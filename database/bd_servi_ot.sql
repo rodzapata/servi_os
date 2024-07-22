@@ -75,7 +75,7 @@ GO
 
 CREATE TABLE [dbo].brand(
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](80) NULL,
+	[brand_name] [varchar](80) NULL,
 
  CONSTRAINT [PK_brand] PRIMARY KEY CLUSTERED 
 (
@@ -87,7 +87,7 @@ GO
 
 CREATE TABLE [dbo].equipment_type(
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](80) NULL,
+	[equipment_type_name] [varchar](80) NULL,
 
  CONSTRAINT [PK_equipment_type] PRIMARY KEY CLUSTERED 
 (
@@ -98,7 +98,7 @@ GO
 
 CREATE TABLE [dbo].maintenance_type(
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](80) NULL,
+	[maintenance_type_name] [varchar](80) NULL,
 
  CONSTRAINT [PK_maintenance_type] PRIMARY KEY CLUSTERED 
 (
@@ -109,7 +109,7 @@ GO
 
 CREATE TABLE [dbo].spare(
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](80) NULL,
+	[spare_name] [varchar](80) NULL,
 
  CONSTRAINT [PK_spare] PRIMARY KEY CLUSTERED 
 (
@@ -136,74 +136,74 @@ CREATE TABLE [dbo].[equipment](
 GO
 
 
-insert into rol(title) values('administrador')
-insert into rol(title) values('asistente')
+insert into rol(title) values('ADMINISTRADOR')
+insert into rol(title) values('ASISTENTE')
 
-insert refrigerant(refrigerant_name) values('R-22 (Clorodifluorometano)')
-insert refrigerant(refrigerant_name) values('R-410A (Mezcla de Difluorometano y Pentafluoroetano)')
-insert refrigerant(refrigerant_name) values('R-32 (Difluorometano)')
-insert refrigerant(refrigerant_name) values('R-134a (1,1,1,2-Tetrafluoroetano)')
-insert refrigerant(refrigerant_name) values('R-1234yf (2,3,3,3-Tetrafluoropropeno)')
-insert refrigerant(refrigerant_name) values('R-404A (Mezcla de HFC-125, HFC-143a y HFC-134a)')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-22')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-410A')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-32')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-134a')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-1234yf')
+insert refrigerant(refrigerant_name) values('GAS REFRIGERANTE R-404A')
 
-insert brand(name) values('LG')
-insert brand(name) values('Samsung')
-insert brand(name) values('Daikin')
-insert brand(name) values('Panasonic')
-insert brand(name) values('Mitsubishi Electric')
-insert brand(name) values('York')
-insert brand(name) values('Carrier')
-insert brand(name) values('Whirlpool')
-insert brand(name) values('Haier')
-insert brand(name) values('Midea')
-insert brand(name) values('Olimpo')
+insert brand(brand_name) values('LG')
+insert brand(brand_name) values('SAMSUNG')
+insert brand(brand_name) values('DAIKIN')
+insert brand(brand_name) values('PANASONIC')
+insert brand(brand_name) values('MITSUBISHI ELECTRIC')
+insert brand(brand_name) values('YORK')
+insert brand(brand_name) values('CARRIER')
+insert brand(brand_name) values('WHIRLPOOL')
+insert brand(brand_name) values('HAIER')
+insert brand(brand_name) values('MIIDEA')
+insert brand(brand_name) values('OLIMPO')
 
-insert equipment_type(name) values('SPLIT')
-insert equipment_type(name) values('CHILLER')
-insert equipment_type(name) values('VENTANA')
-insert equipment_type(name) values('VENTILADOR')
-insert equipment_type(name) values('TORRE')
-insert equipment_type(name) values('FANCOIL')
-insert equipment_type(name) values('NEVERA')
-insert equipment_type(name) values('ENFRIADOR')
-insert equipment_type(name) values('BOMBA')
-insert equipment_type(name) values('LAVADOR')
-insert equipment_type(name) values('CUARTO FRIO')
-insert equipment_type(name) values('EVAPORADOR')
-insert equipment_type(name) values('CONDENSADOR')
-insert equipment_type(name) values('PAQUETE')
-insert equipment_type(name) values('UMA')
-insert equipment_type(name) values('CASETTE')
-insert equipment_type(name) values('RECUPERADORA')
-insert equipment_type(name) values('PRECISION')
-insert equipment_type(name) values('MINISPLIT')
-insert equipment_type(name) values('MULTISPLIT')
-insert equipment_type(name) values('CENTRAL')
-insert equipment_type(name) values('PISO PARED')
-insert equipment_type(name) values('PISO TECHO')
-insert equipment_type(name) values('CENTRAL DESNUDO')
-insert equipment_type(name) values('CAMPANA')
-insert equipment_type(name) values('CORTINA DE AIRE')
-insert equipment_type(name) values('DISPENSADOR DE AGUA')           
+insert equipment_type(equipment_type_name) values('SPLIT')
+insert equipment_type(equipment_type_name) values('CHILLER')
+insert equipment_type(equipment_type_name) values('VENTANA')
+insert equipment_type(equipment_type_name) values('VENTILADOR')
+insert equipment_type(equipment_type_name) values('TORRE')
+insert equipment_type(equipment_type_name) values('FANCOIL')
+insert equipment_type(equipment_type_name) values('NEVERA')
+insert equipment_type(equipment_type_name) values('ENFRIADOR')
+insert equipment_type(equipment_type_name) values('BOMBA')
+insert equipment_type(equipment_type_name) values('LAVADOR')
+insert equipment_type(equipment_type_name) values('CUARTO FRIO')
+insert equipment_type(equipment_type_name) values('EVAPORADOR')
+insert equipment_type(equipment_type_name) values('CONDENSADOR')
+insert equipment_type(equipment_type_name) values('PAQUETE')
+insert equipment_type(equipment_type_name) values('UMA')
+insert equipment_type(equipment_type_name) values('CASETTE')
+insert equipment_type(equipment_type_name) values('RECUPERADORA')
+insert equipment_type(equipment_type_name) values('PRECISION')
+insert equipment_type(equipment_type_name) values('MINISPLIT')
+insert equipment_type(equipment_type_name) values('MULTISPLIT')
+insert equipment_type(equipment_type_name) values('CENTRAL')
+insert equipment_type(equipment_type_name) values('PISO PARED')
+insert equipment_type(equipment_type_name) values('PISO TECHO')
+insert equipment_type(equipment_type_name) values('CENTRAL DESNUDO')
+insert equipment_type(equipment_type_name) values('CAMPANA')
+insert equipment_type(equipment_type_name) values('CORTINA DE AIRE')
+insert equipment_type(equipment_type_name) values('DISPENSADOR DE AGUA')           
 
-insert maintenance_type(name) values('PREVENTIVO')           
-insert maintenance_type(name) values('CORRECTIVO')   
+insert maintenance_type(maintenance_type_name) values('PREVENTIVO')           
+insert maintenance_type(maintenance_type_name) values('CORRECTIVO')   
 
-insert spare(name) values('COMPRESOR')
-insert spare(name) values('CONDENSADOR')
-insert spare(name) values('EVAPORADOR')
-insert spare(name) values('FILTRO DE AIRE')
-insert spare(name) values('TERMOSTATO')
-insert spare(name) values('VENTILADOR (FAN)')
-insert spare(name) values('VALVULA DE EXPANSION')
-insert spare(name) values('MOTOR DEL VENTILADOR')
-insert spare(name) values('REFRIGERANTE')
-insert spare(name) values('PLACA DE CONTROL ELECTRONICO')
-insert spare(name) values('FUSIBLES Y RELES')
-insert spare(name) values('CAPACITOR')
-insert spare(name) values('TUBERIAS Y CONECTORES DEL REFRIGERANTE')
-insert spare(name) values('BOMBA DE CONDENSADO')
-insert spare(name) values('SENSOR DE TEMPERATURA')
+insert spare(spare_name) values('COMPRESOR')
+insert spare(spare_name) values('CONDENSADOR')
+insert spare(spare_name) values('EVAPORADOR')
+insert spare(spare_name) values('FILTRO DE AIRE')
+insert spare(spare_name) values('TERMOSTATO')
+insert spare(spare_name) values('VENTILADOR (FAN)')
+insert spare(spare_name) values('VALVULA DE EXPANSION')
+insert spare(spare_name) values('MOTOR DEL VENTILADOR')
+insert spare(spare_name) values('REFRIGERANTE')
+insert spare(spare_name) values('PLACA DE CONTROL ELECTRONICO')
+insert spare(spare_name) values('FUSIBLES Y RELES')
+insert spare(spare_name) values('CAPACITOR')
+insert spare(spare_name) values('TUBERIAS Y CONECTORES DEL REFRIGERANTE')
+insert spare(spare_name) values('BOMBA DE CONDENSADO')
+insert spare(spare_name) values('SENSOR DE TEMPERATURA')
 
 
 select * from brand
