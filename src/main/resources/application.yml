@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:49789;encrypt=false;trustServerCertificate=true;databaseName=servi_ot
+    url: jdbc:sqlserver://localhost:61061;encrypt=false;trustServerCertificate=true;databaseName=servi_ot
     username: sa
     password: Clave01.
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
