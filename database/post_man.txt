@@ -1,0 +1,54 @@
+http://localhost:8080/user
+
+{
+    "fullName":"rodney zapata palacio",
+    "bornDate":"1975-02-26",
+    "state":"1",
+    "email":"rondeyzapatapalacio@gmail.com",
+    "phone":"3103724590",
+    "avatar":"foto1.jpg",
+    "password":"clave",
+    "rolId":"1"
+}
+
+{
+    "fullName":"juan miguel zapata cantillo",
+    "bornDate":"2007-07-19",
+    "state":"1",
+    "email":"juanmiguelzapatacantillo@gmail.com",
+    "phone":"3103724590",
+    "avatar":"foto2.jpg",
+    "password":"12345",
+    "rolId":"2"
+}
+
+{
+    "fullName":"Cecilia Cantillo Colon",
+    "bornDate":"1987-05-02",
+    "state":"1",
+    "email":"ccantillo2018@gmail.com",
+    "phone":"3024694610",
+    "avatar":"foto3.jpg",
+    "password":"12345",
+    "rolId":"2"
+}
+
+Curstomer
+{
+    "fullName":"Evelin Palacio",
+    "bornDate":"1985-01-02",
+    "state":"1",
+    "email":"evelin2005@gmail.com",
+    "address":"Kra 5C 10-20",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"Tecnoglas",
+    "bornDate":"1985-01-02",
+    "state":"1",
+    "email":"samuel@tecno.com",
+    "phone":"3126810844",
+    "address":"via 40 calle 74",
+    "city":"Barranquilla"
+}
