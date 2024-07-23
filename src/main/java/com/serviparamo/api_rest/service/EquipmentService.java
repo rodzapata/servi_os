@@ -3,6 +3,7 @@ package com.serviparamo.api_rest.service;
 import com.serviparamo.api_rest.dto.EquipmentDto;
 import com.serviparamo.api_rest.entity.CustomerEntity;
 import com.serviparamo.api_rest.entity.EquipmentEntity;
+import com.serviparamo.api_rest.exception.CustomerNotFoundException;
 import com.serviparamo.api_rest.exception.ResourceNotFoundException;
 import com.serviparamo.api_rest.exception.SerialNumberNotValidException;
 import com.serviparamo.api_rest.repository.EquipmentRepository;
@@ -36,7 +37,7 @@ public class EquipmentService {
 
         //No se puede registrar un Equipo sin un Cliente previamente registrado
         if(!customerService.existCustomerById(dto.getCustomerId())) {
-            throw new ResourceNotFoundException();
+            throw new CustomerNotFoundException();
         }
 
 

@@ -27,8 +27,8 @@ public class CustomerService {
         return true;
     }
     public boolean existCustomerById(Long id) {
-        Optional<CustomerEntity> optionalRolEntity = this.repository.findById(id);
-        return optionalRolEntity.isPresent();
+        Optional<CustomerEntity> optionalCustomerEntity = this.repository.findById(id);
+        return optionalCustomerEntity.isPresent();
     }
 
     public CustomerDto create(CustomerDto dto) {
