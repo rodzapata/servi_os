@@ -35,6 +35,7 @@ public class UserService {
         }
 
         //No se puede registrar un usuario sin un rol previamente registrado
+
         if(!rolService.existRolById(dto.getRolId())) {
             throw new ResourceNotFoundException();
         }

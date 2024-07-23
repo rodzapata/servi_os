@@ -121,13 +121,13 @@ GO
 
 CREATE TABLE [dbo].[equipment](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	[customer_id] [bigint] NOT NULL,
-	[equipment_type_id] [bigint] NOT NULL,
-	[brand_id] [bigint] NOT NULL,
-	[refrigerant_id] [bigint] NOT NULL,
 	[serial_number] [varchar](80) NOT NULL UNIQUE,
 	[installation_date] [datetime] NOT NULL,
-	[last_maintenence] [datetime] NOT NULL,
+	[last_maintenance_date] [datetime] NULL,
+	[customer_id] [bigint] NULL,
+	[equipment_type_id] [bigint] NULL,
+	[brand_id] [bigint] NULL,
+	[refrigerant_id] [bigint] NULL,
  CONSTRAINT [PK_equipment] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC

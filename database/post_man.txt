@@ -52,3 +52,11 @@ Curstomer
     "address":"via 40 calle 74",
     "city":"Barranquilla"
 }
+
+productos
+{
+    "serialNumber": "1010",
+    "installationDate": "2016-01-01",
+    "lastMaintenanceDate": "2017-01-01",
+    "customerId": 1
+}

@@ -2,6 +2,7 @@ package com.serviparamo.api_rest.service;
 
 import com.serviparamo.api_rest.dto.CustomerDto;
 import com.serviparamo.api_rest.entity.CustomerEntity;
+import com.serviparamo.api_rest.entity.RolEntity;
 import com.serviparamo.api_rest.exception.EmailNotValidException;
 import com.serviparamo.api_rest.exception.ResourceNotFoundException;
 import com.serviparamo.api_rest.repository.CustomerRepository;
@@ -24,6 +25,10 @@ public class CustomerService {
             return false;
         }
         return true;
+    }
+    public boolean existCustomerById(Long id) {
+        Optional<CustomerEntity> optionalRolEntity = this.repository.findById(id);
+        return optionalRolEntity.isPresent();
     }
 
     public CustomerDto create(CustomerDto dto) {
