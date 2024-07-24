@@ -1,3 +1,4 @@
+-------- USUARIOS --------------------
 http://localhost:8080/user
 
 {
@@ -33,7 +34,9 @@ http://localhost:8080/user
     "rolId":"2"
 }
 
-Curstomer
+--------- CLIENTES --------------
+http://localhost:8080/customer
+
 {
     "fullName":"Evelin Palacio",
     "bornDate":"1985-01-02",
@@ -51,6 +54,20 @@ Curstomer
     "phone":"3126810844",
     "address":"via 40 calle 74",
     "city":"Barranquilla"
+}
+
+--------------- REFRIGERNATES ---------
+
+http://localhost:8080/refrigerant
+
+{
+    "refrigerantName": "GAS REFRIGERANTE R-22"
+}
+
+--------------- MARCAS ------------
+http://localhost:8080/brand
+{
+    "brandName": "LG"
 }
 
 productos

@@ -28,4 +28,9 @@ public class EquipmentEntity {
     @JoinColumn(name = "customer_id", nullable = false, updatable = false)
     private CustomerEntity customer;
 
+    @ManyToOne
+    @JoinColumn(name = "equipment_type_id", nullable = false, updatable = false)
+    private EquipmentTypeEntity equipmentTypeEntity;
+
+
 }
