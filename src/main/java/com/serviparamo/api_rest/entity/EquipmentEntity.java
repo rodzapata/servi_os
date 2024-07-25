@@ -30,7 +30,7 @@ public class EquipmentEntity {
 
     @ManyToOne
     @JoinColumn(name = "equipment_type_id", nullable = false, updatable = false)
-    private EquipmentTypeEntity equipmentTypeEntity;
+    private EquipmentTypeEntity equipmentType;
 
 
 }

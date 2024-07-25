@@ -42,6 +42,17 @@ http://localhost:8080/customer
     "bornDate":"1985-01-02",
     "state":"1",
     "email":"evelin2005@gmail.com",
+    "phone":"3126810844",
+    "address":"Kra 5C 10-20",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"samuel zapata",
+    "bornDate":"2010-01-02",
+    "state":"1",
+    "email":"samauel@gmail.com",
+    "phone":"3126810844",
     "address":"Kra 5C 10-20",
     "city":"Barranquilla"
 }
@@ -53,6 +64,16 @@ http://localhost:8080/customer
     "email":"samuel@tecno.com",
     "phone":"3126810844",
     "address":"via 40 calle 74",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"GRUAS TELESCOPICA DE COLOMBIA",                                                                                                                                            
+    "bornDate":"2024-01-02",
+    "state":"1",
+    "email":"gruas@tecno.com",
+    "phone":"3126810844",
+    "address":"via 40 calle 30",
     "city":"Barranquilla"
 }
 
@@ -70,10 +91,18 @@ http://localhost:8080/brand
     "brandName": "LG"
 }
 
-productos
+--------------- PRODUCTOS ----------
+http://localhost:8080/equipment
 {
     "serialNumber": "1010",
     "installationDate": "2016-01-01",
     "lastMaintenanceDate": "2017-01-01",
     "customerId": 1
+}
+
+{
+    "serialNumber": "1020",
+    "installationDate": "2018-01-01",
+    "lastMaintenanceDate": "2019-01-01",
+    "customerId": 3
 }

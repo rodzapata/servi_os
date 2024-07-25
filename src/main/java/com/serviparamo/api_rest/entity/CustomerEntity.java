@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -36,6 +37,7 @@ public class CustomerEntity {
     @Column(name = "city")
     private String city;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private List<EquipmentEntity> equipments;
 
 }

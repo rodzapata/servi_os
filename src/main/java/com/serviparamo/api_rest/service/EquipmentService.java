@@ -3,8 +3,8 @@ package com.serviparamo.api_rest.service;
 import com.serviparamo.api_rest.dto.EquipmentDto;
 import com.serviparamo.api_rest.entity.CustomerEntity;
 import com.serviparamo.api_rest.entity.EquipmentEntity;
+import com.serviparamo.api_rest.entity.EquipmentTypeEntity;
 import com.serviparamo.api_rest.exception.CustomerNotFoundException;
-import com.serviparamo.api_rest.exception.ResourceNotFoundException;
 import com.serviparamo.api_rest.exception.SerialNumberNotValidException;
 import com.serviparamo.api_rest.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,10 @@ public class EquipmentService {
     private EquipmentRepository repository;
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private EquipmentTypeService equipmentTypeService;
+
     public boolean validateBySerialNumber(String serialNumber) {
         EquipmentEntity entity = this.repository.findBySerialNumber(serialNumber);
         if(Objects.isNull(entity)) {
@@ -31,11 +35,13 @@ public class EquipmentService {
 
     public EquipmentDto create(EquipmentDto dto) {
         //No se puede registrar un numero de serial ya registrado
+
         if(validateBySerialNumber(dto.getSerialNumber())) {
             throw new SerialNumberNotValidException();
         }
 
         //No se puede registrar un Equipo sin un Cliente previamente registrado
+
         if(!customerService.existCustomerById(dto.getCustomerId())) {
             throw new CustomerNotFoundException();
         }
@@ -49,6 +55,13 @@ public class EquipmentService {
         CustomerEntity customer = new CustomerEntity();
         customer.setId(dto.getCustomerId());
         entity.setCustomer(customer);
+
+
+
+        EquipmentTypeEntity equipmentType= new EquipmentTypeEntity();
+        equipmentType.setId(dto.getEquipmentTypeId());
+        entity.setEquipmentType(equipmentType);
+
         entity = repository.save(entity);
 
         dto.setId(entity.getId());
@@ -69,6 +82,8 @@ public class EquipmentService {
                     .customerId(entity.getCustomer().getId())
                     .customerFullName(entity.getCustomer().getFullName())
                     .customerPhone(entity.getCustomer().getPhone())
+                    .equipmentTypeId(entity.getEquipmentType().getId())
+                    .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
                     .build();
             dtos.add(dto);
         }
@@ -87,6 +102,8 @@ public class EquipmentService {
                 .customerId(entity.getCustomer().getId())
                 .customerFullName(entity.getCustomer().getFullName())
                 .customerPhone(entity.getCustomer().getPhone())
+                .equipmentTypeId(entity.getEquipmentType().getId())
+                .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
                 .build();
 
         return dto;
@@ -127,10 +144,17 @@ public class EquipmentService {
         customer.setId(newData.getCustomerId());
         entity.setCustomer(customer);
 
+        Long variable =newData.getCustomerId();
+        System.out.println("el Id de customer es : "+variable);
+
+
+        EquipmentTypeEntity equipmentType = new EquipmentTypeEntity();
+        equipmentType.setId(newData.getEquipmentTypeId());
+        entity.setEquipmentType(equipmentType);
+
         this.repository.save(entity);
 
         newData.setId(entity.getId());
-
         return newData;
     }
 

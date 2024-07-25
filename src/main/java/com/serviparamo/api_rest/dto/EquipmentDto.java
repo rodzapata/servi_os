@@ -31,4 +31,9 @@ public class EquipmentDto {
 
     private String customerPhone;
 
+    @NotNull
+    private Long equipmentTypeId;
+
+    private String equipmentTypeName;
+
 }

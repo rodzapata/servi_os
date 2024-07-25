@@ -45,6 +45,7 @@ CREATE TABLE [dbo].[rol](
 ) ON [PRIMARY]
 GO
 
+
 CREATE TABLE [dbo].[customer](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	[full_name] [varchar](80) NULL,
@@ -204,6 +205,12 @@ insert spare(spare_name) values('CAPACITOR')
 insert spare(spare_name) values('TUBERIAS Y CONECTORES DEL REFRIGERANTE')
 insert spare(spare_name) values('BOMBA DE CONDENSADO')
 insert spare(spare_name) values('SENSOR DE TEMPERATURA')
+
+
+insert customer(full_name, born_date, state, email, phone,address, city)
+values('Evelin Palacio','1985/02/01', 1, 'evelin@gmail.com','300400500','calle 10', 'Barranquilla')
+insert customer(full_name, born_date, state, email, phone,address, city)
+values('Tecnoglas','1950/02/01', 1, 'tecnoglas@gmail.com','3104001122','via 40', 'Barranquilla')
 
 
 select * from brand

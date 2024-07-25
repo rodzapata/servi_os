@@ -11,7 +11,10 @@ import lombok.Data;
 public class EquipmentTypeDto {
     private Long id;
 
+/*
     @NotBlank
+
+ */
     private String equipmentTypeName;
 
 }
