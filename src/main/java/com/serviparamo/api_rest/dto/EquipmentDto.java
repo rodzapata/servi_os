@@ -36,4 +36,9 @@ public class EquipmentDto {
 
     private String equipmentTypeName;
 
+    @NotNull
+    private Long brandId;
+
+    private String brandName;
+
 }

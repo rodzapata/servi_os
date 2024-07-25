@@ -32,5 +32,8 @@ public class EquipmentEntity {
     @JoinColumn(name = "equipment_type_id", nullable = false, updatable = false)
     private EquipmentTypeEntity equipmentType;
 
+    @ManyToOne
+    @JoinColumn(name = "brand_id", nullable = false, updatable = false)
+    private BrandEntity brand;
 
 }

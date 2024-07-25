@@ -1,6 +1,7 @@
 package com.serviparamo.api_rest.service;
 
 import com.serviparamo.api_rest.dto.EquipmentDto;
+import com.serviparamo.api_rest.entity.BrandEntity;
 import com.serviparamo.api_rest.entity.CustomerEntity;
 import com.serviparamo.api_rest.entity.EquipmentEntity;
 import com.serviparamo.api_rest.entity.EquipmentTypeEntity;
@@ -24,7 +25,8 @@ public class EquipmentService {
 
     @Autowired
     private EquipmentTypeService equipmentTypeService;
-
+    @Autowired
+    private BrandService brandService;
     public boolean validateBySerialNumber(String serialNumber) {
         EquipmentEntity entity = this.repository.findBySerialNumber(serialNumber);
         if(Objects.isNull(entity)) {
@@ -56,11 +58,13 @@ public class EquipmentService {
         customer.setId(dto.getCustomerId());
         entity.setCustomer(customer);
 
-
-
         EquipmentTypeEntity equipmentType= new EquipmentTypeEntity();
         equipmentType.setId(dto.getEquipmentTypeId());
         entity.setEquipmentType(equipmentType);
+
+        BrandEntity brand =new BrandEntity();
+        brand.setId(dto.getBrandId());
+        entity.setBrand(brand);
 
         entity = repository.save(entity);
 
@@ -84,6 +88,8 @@ public class EquipmentService {
                     .customerPhone(entity.getCustomer().getPhone())
                     .equipmentTypeId(entity.getEquipmentType().getId())
                     .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
+                    .brandId(entity.getBrand().getId())
+                    .brandName(entity.getBrand().getBrandName())
                     .build();
             dtos.add(dto);
         }
@@ -104,6 +110,8 @@ public class EquipmentService {
                 .customerPhone(entity.getCustomer().getPhone())
                 .equipmentTypeId(entity.getEquipmentType().getId())
                 .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
+                .brandId(entity.getBrand().getId())
+                .brandName(entity.getBrand().getBrandName())
                 .build();
 
         return dto;
@@ -151,6 +159,10 @@ public class EquipmentService {
         EquipmentTypeEntity equipmentType = new EquipmentTypeEntity();
         equipmentType.setId(newData.getEquipmentTypeId());
         entity.setEquipmentType(equipmentType);
+
+        BrandEntity brand=new BrandEntity();
+        brand.setId(newData.getBrandId());
+        entity.setBrand(brand);
 
         this.repository.save(entity);
 

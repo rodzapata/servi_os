@@ -19,7 +19,6 @@ public class EquipmentTypeEntity {
     private String equipmentTypeName;
 
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipmentType")
     private List<EquipmentEntity> equipments;
 
