@@ -36,4 +36,8 @@ public class EquipmentEntity {
     @JoinColumn(name = "brand_id", nullable = false, updatable = false)
     private BrandEntity brand;
 
+    @ManyToOne
+    @JoinColumn(name = "refrigerant_id", nullable = false, updatable = false)
+    private RefrigerantEntity refrigerant;
+
 }

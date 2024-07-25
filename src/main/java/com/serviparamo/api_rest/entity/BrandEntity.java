@@ -20,5 +20,6 @@ public class BrandEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
     private List<EquipmentEntity> equipments;
 
+
 }
 

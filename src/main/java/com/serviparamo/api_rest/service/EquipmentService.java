@@ -1,10 +1,7 @@
 package com.serviparamo.api_rest.service;
 
 import com.serviparamo.api_rest.dto.EquipmentDto;
-import com.serviparamo.api_rest.entity.BrandEntity;
-import com.serviparamo.api_rest.entity.CustomerEntity;
-import com.serviparamo.api_rest.entity.EquipmentEntity;
-import com.serviparamo.api_rest.entity.EquipmentTypeEntity;
+import com.serviparamo.api_rest.entity.*;
 import com.serviparamo.api_rest.exception.CustomerNotFoundException;
 import com.serviparamo.api_rest.exception.SerialNumberNotValidException;
 import com.serviparamo.api_rest.repository.EquipmentRepository;
@@ -27,6 +24,9 @@ public class EquipmentService {
     private EquipmentTypeService equipmentTypeService;
     @Autowired
     private BrandService brandService;
+    @Autowired
+    private RefrigerantService refrigerantService;
+
     public boolean validateBySerialNumber(String serialNumber) {
         EquipmentEntity entity = this.repository.findBySerialNumber(serialNumber);
         if(Objects.isNull(entity)) {
@@ -66,6 +66,10 @@ public class EquipmentService {
         brand.setId(dto.getBrandId());
         entity.setBrand(brand);
 
+        RefrigerantEntity refrigerant= new RefrigerantEntity();
+        refrigerant.setId(dto.getBrandId());
+        entity.setRefrigerant(refrigerant);
+
         entity = repository.save(entity);
 
         dto.setId(entity.getId());
@@ -90,6 +94,8 @@ public class EquipmentService {
                     .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
                     .brandId(entity.getBrand().getId())
                     .brandName(entity.getBrand().getBrandName())
+                    .refrigerantId(entity.getRefrigerant().getId())
+                    .refrigerantName(entity.getRefrigerant().getRefrigerantName())
                     .build();
             dtos.add(dto);
         }
@@ -112,6 +118,8 @@ public class EquipmentService {
                 .equipmentTypeName(entity.getEquipmentType().getEquipmentTypeName())
                 .brandId(entity.getBrand().getId())
                 .brandName(entity.getBrand().getBrandName())
+                .refrigerantId(entity.getRefrigerant().getId())
+                .refrigerantName(entity.getRefrigerant().getRefrigerantName())
                 .build();
 
         return dto;
@@ -152,10 +160,6 @@ public class EquipmentService {
         customer.setId(newData.getCustomerId());
         entity.setCustomer(customer);
 
-        Long variable =newData.getCustomerId();
-        System.out.println("el Id de customer es : "+variable);
-
-
         EquipmentTypeEntity equipmentType = new EquipmentTypeEntity();
         equipmentType.setId(newData.getEquipmentTypeId());
         entity.setEquipmentType(equipmentType);
@@ -163,6 +167,10 @@ public class EquipmentService {
         BrandEntity brand=new BrandEntity();
         brand.setId(newData.getBrandId());
         entity.setBrand(brand);
+
+        RefrigerantEntity refrigerant=new RefrigerantEntity();
+        refrigerant.setId(newData.getRefrigerantId());
+        entity.setRefrigerant(refrigerant);
 
         this.repository.save(entity);
 

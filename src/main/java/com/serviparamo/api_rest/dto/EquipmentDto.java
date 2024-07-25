@@ -41,4 +41,9 @@ public class EquipmentDto {
 
     private String brandName;
 
+    @NotNull
+    private Long refrigerantId;
+
+    private String refrigerantName;
+
 }
