@@ -194,7 +194,7 @@ CREATE TABLE [dbo].[performed_activity](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	servi_order_id [bigint] NULL,
 	activity_id [bigint] NULL,
-	response_activity varchar(250) NOT NULL,
+	response_activity varchar(250) NOT NULL
  CONSTRAINT [PK_performed_activity] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -322,7 +322,7 @@ insert activity(activity_name) values('Verificar voltaje de operación sea de 12 
 
                                                                                                                                                                                      
                                                                                                                                                                                  
-                                                                                                                                                                                                     
+select * from activity                                                                                                                                                                                                     
                                                                                                                                                                                                           
 
 
