@@ -1,0 +1,90 @@
+
+@media (max-width: 1200px) {
+    .container {
+        background: red;
+        grid-template-areas:
+            "aside"
+            "content";
+        /* grid-template-columns: 1fr; */
+        grid-template-rows: 50px 1fr;
+
+        grid-template-columns: 7rem auto;
+
+    }
+
+    .aside {
+        position: fixed;
+        width: 5.6rem;
+        height: 100%;
+        /* left: -100px; */
+        /* left: -250px; */
+        top: 0;
+    }
+
+    .aside.open {
+        left: 0;
+    }
+
+    .content {
+        grid-area: content;
+        margin-top: 50px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+
+    /* ======== pegado ======== */
+    .aside .top .logo h2{
+        display: none;
+    }
+
+    .aside .menu h3{
+        display: none;
+    }
+
+    .aside a{
+        width: 5.6rem;
+    }
+
+    .aside a:last-child{
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        background: blue;
+        grid-template-areas:
+            "aside"
+            "content";
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        left: -250px;
+        top: 0;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .content {
+        grid-area: content;
+        margin-top: 50px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
