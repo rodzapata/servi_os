@@ -227,11 +227,11 @@ aside .sidebar a:hover span{
 }
 
 
-/* ======MAIN =============== */
-main{
+/* ====== MAIN DASHBOARD =============== */
+#main-dashboard{
     margin-top: 1.4rem;
 }
-main .date{
+#main-dashboard .date{
     display: inline-block;
     background: var(--color-light);
     border-radius: var(--border-radius-1);
@@ -240,19 +240,19 @@ main .date{
 
 }
 
-main .date input[type='date']{
+#main-dashboard .date input[type='date']{
     background: transparent;
     color: var(--color-dark);
 
 }
-main .insights {
+#main-dashboard .insights {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
 
 }
 
-main .insights > div{
+#main-dashboard .insights > div{
     background: var(--color-white) ;
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
@@ -260,13 +260,13 @@ main .insights > div{
     box-shadow: var(--box-shadow);
 }
 
-main .insights > div:hover{
+#main-dashboard .insights > div:hover{
     box-shadow: none;
     transition: all 300ms ease;
 
 }
 
-main .insights > div span{
+#main-dashboard .insights > div span{
     background:var(--color-primary);
     padding: 0.5rem;
     border-radius: 50%;
@@ -274,37 +274,37 @@ main .insights > div span{
     font-size: 2rem;
 }
 
-main .insights > div.expenses span{
+#main-dashboard .insights > div.expenses span{
     background:var(--color-danger);
 }
 
-main .insights > div.income span{
+#main-dashboard .insights > div.income span{
     background:var(--color-success);
 }
 
-main .insights > div .middle{
+#main-dashboard .insights > div .middle{
     display: flex;
     align-items: center;
     justify-content: space-between;
 } 
 
-main .insights h3{
+#main-dashboard .insights h3{
     margin: 1rem 0 0.6rem;
     font-size: 1rem;
 } 
 
-main .insights .progress{ 
+#main-dashboard .insights .progress{ 
     position: relative;
     width: 92px;
     height: 92px; 
     border-radius: 50%;
 } 
-main .insights svg{
+#main-dashboard .insights svg{
     width: 7rem;
     height: 7rem;
 } 
 
-main .insights svg circle{
+#main-dashboard .insights svg circle{
     fill: none;
     stroke: var(--color-primary);
     stroke-width: 14;
@@ -314,24 +314,24 @@ main .insights svg circle{
     stroke-dashoffset: 92; 
 } 
 
-main .insights .sales svg circle{
+#main-dashboard .insights .sales svg circle{
     stroke-dasharray: -30;
     stroke-dashoffset: 200; 
 
 }
 
-main .insights .expenses svg circle{
+#main-dashboard .insights .expenses svg circle{
     stroke-dasharray: 20;
     stroke-dashoffset: 80; 
 
 }
-main .insights .incomes svg circle{
+#main-dashboard .insights .incomes svg circle{
     stroke-dasharray: 35;
     stroke-dashoffset: 110; 
 
 }
 
-main .insights .progress .number{
+#main-dashboard .insights .progress .number{
     position: absolute;
     top: 0;
     left: 0;
@@ -343,15 +343,15 @@ main .insights .progress .number{
 }
 
 /* ====== Recent Orders ========== */
-main .recent-orders{
+#main-dashboard .recent-orders{
     margin-top: 2rem;
 }
 
-main .recent-orders h2{
+#main-dashboard .recent-orders h2{
     margin-bottom: 0.8rem;
 }
 
-main .recent-orders table{
+#main-dashboard .recent-orders table{
     background: var(--color-white);
     width: 100%;
     border-radius: var(--card-border-radius);
@@ -360,21 +360,21 @@ main .recent-orders table{
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
 }
-main .recent-orders table:hover{
+#main-dashboard .recent-orders table:hover{
     box-shadow: none;
 }
 
-main table tbody td{
+#main-dashboard table tbody td{
     height: 2.8rem;
     border-bottom: 1px solid var(--color-light);
     color: var(--color-dark-variant);
 }
 
-main table tbody tr:last-child td{
+#main-dashboard table tbody tr:last-child td{
     border: none;
 }
 
-main .recent-orders a{
+#main-dashboard .recent-orders a{
     text-align: center;
     display: block;
     margin: 1rem auto;
@@ -453,7 +453,7 @@ header .top .profile{
         position: relative;
         margin-top: 1.8rem;
     }
-    main .insights{
+    #main-dashboard .insights{
         grid-template-columns: 1fr;
         gap:0;
     }
@@ -470,14 +470,13 @@ header .top .profile{
 
 @media screen and (max-width: 768px){
     .container{
-        /* background:cyan; */
         grid-template-columns: 1fr;
         /* width: 94%; */
     }
 
     aside{
         position: fixed;
-        left: 0;
+        left:0;
         background: var(--color-white);
         width: 18rem;
         z-index: 3;
@@ -514,7 +513,7 @@ header .top .profile{
         cursor: pointer;
 
     }
-    main .recent-orders{
+    #main-dashboard .recent-orders{
         position: relative;
         margin: 3rem 0 0 0;
         width: 100%;
@@ -554,4 +553,61 @@ header .top .profile{
 
     }
 
+}
+
+/* ====== CUSTOMER ========= */
+#main-customer{
+    margin-top: 1.4rem;
+    margin-top: 0;
+}
+
+.input-field{
+    background-color: #515966;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    transition:max-height 05s;
+    overflow: hidden;
+}
+input{
+    width: 100X;
+    background: transparent;
+    border: 0;
+    outline: none;
+    padding: 18px 15px;
+    color:#edeffd;
+}
+input::placeholder{
+    color:#edeffd;
+}
+.input-field span{
+    margin-left: 15px;
+    color:#41f1b6
+}
+/* #main-customer .register {
+    background: var(--color-white) ;
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+} */
+
+.btn{
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    height: 3rem;
+    width: 6rem;
+}
+.btn-primary{
+    color: var(--color-white);
+    background: var(--color-primary);
+}
+.form-control{
+    height: 2rem;
+    font-size: 16px;
+    background: var(--color-white);
+}
+.form-label{
+    height: 2rem;
 }
