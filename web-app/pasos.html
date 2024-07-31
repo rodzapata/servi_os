@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="aside" id="aside">
+        <aside>
             <div class="top">
                 <div class="logo">
                     <img src="img/boomerang.png" alt="logo">
@@ -20,17 +20,17 @@
                     <span class="material-symbols-outlined">close</span>
                 </div>
             </div>
-            <div class="hamburger" id="hamburger">&#9776;</div>
+            <!-- <div class="hamburger" id="hamburger">&#9776;</div> -->
             <nav class="sidebar">
                 <ul>
                     <li>
-                        <a href="#" onclick="loadPage('page1.html')">
+                        <a href="#" onclick="loadPage('dashboard2.html')" class="active">
                             <span class="material-symbols-outlined">grid_view</span>
                             <h3>Dasboard</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadPage('page2.html')" class="active">
+                        <a href="#" onclick="loadPage('page2.html')" >
                             <span class="material-symbols-outlined">person</span>
                             <h3>person</h3>
                         </a>
@@ -78,23 +78,17 @@
                         </a>
                     </li>
                     <li>
-                        <!-- <a href="#" onclick="loadPage('page10.html')">
-                            <span class="material-symbols-outlined">logout</span>
-                            <h3>logout</h3> -->
                         <a href="#" id="logout">
                             <span class="material-symbols-outlined">logout</span>
                             <h3>logout</h3>
                         </a>
                     </li>
-   
                 </ul>
-
             </nav>
-        </div>
+        </aside>
    
-
         <div class="content">
-            <iframe src="page1.html" id="iframeContent"></iframe>
+            <iframe src="dashboard2.html" id="iframeContent"></iframe>
         </div>
         <!-- <button class="dark-mode-toggle" id="darkModeToggle">Toggle Dark Mode</button> -->
 
