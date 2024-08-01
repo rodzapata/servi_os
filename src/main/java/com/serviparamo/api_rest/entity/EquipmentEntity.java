@@ -25,19 +25,19 @@ public class EquipmentEntity {
     private Date lastMaintenanceDate;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false, updatable = false)
+    @JoinColumn(name = "customer_id", nullable = false, updatable = true)
     private CustomerEntity customer;
 
     @ManyToOne
-    @JoinColumn(name = "equipment_type_id", nullable = false, updatable = false)
+    @JoinColumn(name = "equipment_type_id", nullable = false, updatable = true)
     private EquipmentTypeEntity equipmentType;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false, updatable = false)
+    @JoinColumn(name = "brand_id", nullable = false, updatable = true)
     private BrandEntity brand;
 
     @ManyToOne
-    @JoinColumn(name = "refrigerant_id", nullable = false, updatable = false)
+    @JoinColumn(name = "refrigerant_id", nullable = false, updatable = true)
     private RefrigerantEntity refrigerant;
 
 }

@@ -4,65 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer</title>
+    <link rel="stylesheet" href="css/customer.css">
 </head>
 <body>
     <main id="main-customer">
         <h1>Clientes</h1>
         <div class="register" id="reg-customer">
             <form id="frm1" >
-                <br>
                     <div class="input-field">
                         <span class="material-symbols-outlined">person</span>
                         <input type="text" class="form-control" id="fullName" placeholder="Nombre completo">
                     </div>
                     <div class="input-field">
-                        <span class="material-symbols-outlined">person</span>
+                        <span class="material-symbols-outlined">calendar_month</span>
                         <input type="date" class="form-control" id="bornDate" placeholder="Fecha de nacimiento">
                     </div>
                     <div class="input-field">
-                        <span class="material-symbols-outlined">person</span>
-                        <input type="checkbox" class="form-control" id="state" placeholder="seleccione el estado activo o inactivo">
+                        <span class="material-symbols-outlined">check</span>
+                        <label class="label-field" for="">Estado</label>
+                        <input type="checkbox" class="form-control" id="state" >
                     </div>
                     <div class="input-field">
                         <span class="material-symbols-outlined">mail</span>
                         <input type="email" class="form-control" id="email" placeholder="Ingrese su correo"> 
                     </div>
                     <div class="input-field">
-                        <span class="material-symbols-outlined">mail</span>
+                        <span class="material-symbols-outlined">pin</span>
                         <input type="number" class="form-control" id="phone" placeholder="Ingrese su telefono"> 
                     </div>
                     <div class="input-field">
-                        <span class="material-symbols-outlined">mail</span>
-                        <input type="text" class="form-control" id="address" placeholder="ingrese su mail">
-                    </div>
-                    <div class="input-field">
-                        <span class="material-symbols-outlined">mail</span>
+                        <span class="material-symbols-outlined">news</span>
                         <input type="text" class="form-control" id="city" placeholder="ingrese ciudad">
                     </div>    
                     <div class="input-field">
-                        <span class="material-symbols-outlined">mail</span>
+                        <span class="material-symbols-outlined">news</span>
                         <input type="text" class="form-control" id="avatar" placeholder="Escoja su avatar" accept="image/*" onselect="upload()">
                     </div>    
     
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                         <label for="rol" class="form-label">Rol</label>
                         <div id="contenedor_rol">
                             <select class="form-control" id="rol">
                             </select>
                         </div>
-                    </div>
+                    </div> -->
+                    <button type="submit" id="btnSubmit" class="btn btn-primary">Enviar</button>
+                    <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
+          
                 </div>
                 <div class="row hide" id="contenedor_avatar">
     
                     <img id="img_avatar" width="100px" height="100px">
                 </div>
-    
-                <br>
-                <br>
-       
-                <button type="submit" id="btnSubmit" class="btn btn-primary">Enviar</button>
-                <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
-      
+           
             </form>
             <br>
     

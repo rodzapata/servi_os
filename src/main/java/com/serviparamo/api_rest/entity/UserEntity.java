@@ -40,7 +40,7 @@ public class UserEntity {
     */
 
     @ManyToOne
-    @JoinColumn(name = "rol_id", nullable = false, updatable = false)
+    @JoinColumn(name = "rol_id", nullable = false, updatable = true)
     private RolEntity rol;
 
 }
