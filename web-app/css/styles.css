@@ -39,7 +39,6 @@
     padding: 0;
     outline: 0;
     appearance: none;
-    border: 0;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
@@ -599,13 +598,16 @@ input{
     border: 0;
     outline:none;
     padding: 1rem;
-    color:white
+    color:white;
+    color:red;
 }
 input::placeholder{
     color:white;
+    color:red;
 }
 .label-field{
     color: white;
+    color:red;
 }
 .input-field span{
     margin-left: 15px;

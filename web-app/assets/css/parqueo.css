@@ -1,0 +1,56 @@
+.contenedor-zonas {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.contenedor-zonas h2 {
+    font-size: 20px;
+}
+
+.contenedor-zonas .zona {
+    position: relative;
+    border: 3px solid #999;
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.contenedor-zonas .zona.disabled {
+    border: 3px solid #fa5656;
+    background-color: #fff9f9;
+    cursor: none !important;
+    background-image: url(../images/advertencia.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.contenedor-zonas .zona.reserved {
+    border: 3px solid #0674a3;
+    background-color: #e0f0fc;
+}
+
+.contenedor-zonas .zona .title {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    background-color: #fff;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+}
+
+.contenedor-zonas .zona.disabled .title {
+    border-color: #fa5656 !important;
+    background-color: #fff !important;
+    color: #fa5656;
+    font-weight: bold;
+}
