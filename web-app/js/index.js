@@ -5,8 +5,8 @@ $(function () {
         $("#userId").val("");
     });
 
-    // loadZoneTemplate("header");
-    // loadZoneTemplate("footer");
+    loadZoneTemplate("header");
+    loadZoneTemplate("footer");
 
     loadRoles();
     loadUsuarios();
@@ -23,33 +23,30 @@ function loadFormEvent() {
 
         $(".error-input").removeClass("error-input");
 
-        if ($("#fullName").val() === "") {
-            $("#fullName").addClass("error-input");
+        if ($("#nombres").val() === "") {
+            $("#nombres").addClass("error-input");
         }
 
-        if ($("#bornDate").val() === "") {
-            $("#bornDate").addClass("error-input");
+        if ($("#fechaNacimiento").val() === "") {
+            $("#fechaNacimiento").addClass("error-input");
         }
 
-        if ($("#state").val() === "") {
-            $("#state").addClass("error-input");
+        if ($("#color").val() === "") {
+            $("#color").addClass("error-input");
         }
 
-        if ($("#email").val() === "") {
-            $("#email").addClass("error-input");
+        if ($("#correo").val() === "") {
+            $("#correo").addClass("error-input");
         }
 
-        if ($("#phone").val() === "") {
-            $("#phone").addClass("error-input");
+        if ($("#telefono").val() === "") {
+            $("#telefono").addClass("error-input");
         }
 
         if ($("#avatar").val() === "") {
             $("#avatar").addClass("error-input");
         }
 
-        if ($("#password").val() === "") {
-            $("#password").addClass("error-input");
-        }
         if ($("#rol").val() === "") {
             $("#rol").addClass("error-input");
         }
@@ -60,13 +57,12 @@ function loadFormEvent() {
         }
 
         var objUsuario = {
-            "fullName": $("#fullName").val(),
-            "bornDate": $("#bornDate").val(),
-            "state": $("#state").val(),
-            "email": $("#email").val(),
-            "phone": $("#phone").val(),
+            "fullName": $("#nombres").val(),
+            "bornDate": $("#fechaNacimiento").val(),
+            // "color": $("#color").val(),
+            "email": $("#correo").val(),
+            "phone": $("#telefono").val(),
             "avatar": "foto.png",
-            "password": $("#password").val(),
             "rolId": $("#rol").val()
         };
 
@@ -138,7 +134,7 @@ function renderUser(result) {
     $("#userId").val(data.id);
     $("#nombres").val(data.fullName);
     $("#fechaNacimiento").val(today);
-    $("#state").val(data.state);
+    $("#color").val(data.color);
     $("#correo").val(data.email);
     $("#telefono").val(data.phone);
     $("#rol").val(data.rolId);
@@ -154,7 +150,10 @@ function renderUsers(result) {
         html += "<td>" + user.fullName + "</td>"
         html += "<td>" + user.bornDate + "</td>"
         html += "<td>" + 0 + "</td>"
-        html += "<td>" + user.state + "</td>"
+        html += "<td>"
+        html += "<div class='userColor' style='background-color:" + user.color + "'></div>"
+        html += "<label class='detail-color'>" + user.color + "</label>"
+        html += "</td>"
         html += "<td>" + user.email + "</td>"
         html += "<td>" + user.phone + "</td>"
         html += "<td>"

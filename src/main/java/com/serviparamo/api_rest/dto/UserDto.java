@@ -21,7 +21,7 @@ public class UserDto {
     @NotNull
     private Date bornDate;
 
-    @NotNull
+   // @NotNull
     private Long state;
 
     @NotBlank
