@@ -33,5 +33,5 @@ function loadContent(page) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    loadContent('dashboard.html');
+    loadContent('user.html');
 });

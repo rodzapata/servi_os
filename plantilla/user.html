@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="assets/css/maqueta.css">
+
+</head>
+<body>
+    <div class="container">
+        <div id="content_header">
+
+        </div>
+        <div id="content_aside">
+
+        </div>
+        <main class="main-content" id="main-content">
+            <form id="frm1" style="margin: 50px;">
+                <input type="hidden" id="userId" />
+    
+                <h1>Formulario de Usuarios</h1>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nombres" class="form-label ">Nombres</label>
+                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres completos">
+                    </div>
+                    <div class="col-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento">
+                    </div>
+                    <div class="col-3">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="color" class="form-control" id="color">
+                    </div>
+                    <div class="col-3">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
+                    </div>
+                    <div class="col-3">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="col-3">
+                        <label for="avatar" class="form-label">Avatar</label>
+                        <input type="file" class="form-control" id="avatar" accept="image/*" onselect="upload()">
+                    </div>
+    
+                    <div class="col-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <div id="contenedor_rol">
+                            <select class="form-control" id="rol">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row hide" id="contenedor_avatar">
+    
+                    <img id="img_avatar" width="100px" height="100px">
+                </div>
+    
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Fecha nacimiento</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListUsers">
+                    
+                </tbody>
+            </table>
+    
+        </main>
+
+        <div id="content_footer">
+
+        </div>
+
+
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="assets/js/maqueta.js"></script>
+        <script src="assets/js/core.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="content_header" id="content_header">
+            <header class="header">
+                header
+            </header>
+        </div>
+        <div class="content_aside">
+            <aside class="aside">
+                aside
+            </aside>
+        </div>
+        <main class="main-content">
+            main-content
+        </main>
+    </div>
+    <style>
+        header{
+            grid-area: header;
+            background: yellow;
+        }
+        aside{
+            grid-area: aside;
+            background: cyan;
+        }
+        main{
+            grid-area: main-content;
+            background: gray;
+        }
+        .container{
+            display: grid;
+            grid-template-areas: 
+        "aside header"
+        "aside main-content";
+        grid-template-columns: 1fr 2fr;
+        /* grid-template-columns: 14rem 1fr; */
+    height: 100vh;
+
+
+        }
+    </style>    
+</body>
+</html>
