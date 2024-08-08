@@ -5,4 +5,9 @@ function loadContent(page) {
             document.getElementById('main-content').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar la página:', error));
+
+        loadRoles();
+        loadUsuarios();
+        loadFormEvent();
+    
 }

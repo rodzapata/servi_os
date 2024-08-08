@@ -5,8 +5,8 @@ $(function () {
         $("#userId").val("");
     });
 
-    loadZoneTemplate("header");
-    loadZoneTemplate("footer");
+    // loadZoneTemplate("header");
+    // loadZoneTemplate("footer");
 
     loadRoles();
     loadUsuarios();
@@ -31,9 +31,9 @@ function loadFormEvent() {
             $("#fechaNacimiento").addClass("error-input");
         }
 
-        if ($("#color").val() === "") {
-            $("#color").addClass("error-input");
-        }
+        // if ($("#color").val() === "") {
+        //     $("#color").addClass("error-input");
+        // }
 
         if ($("#correo").val() === "") {
             $("#correo").addClass("error-input");
@@ -59,7 +59,7 @@ function loadFormEvent() {
         var objUsuario = {
             "fullName": $("#nombres").val(),
             "bornDate": $("#fechaNacimiento").val(),
-            "color": $("#color").val(),
+            // "color": $("#color").val(),
             "email": $("#correo").val(),
             "phone": $("#telefono").val(),
             "avatar": "foto.png",
@@ -134,7 +134,7 @@ function renderUser(result) {
     $("#userId").val(data.id);
     $("#nombres").val(data.fullName);
     $("#fechaNacimiento").val(today);
-    $("#color").val(data.color);
+    // $("#color").val(data.color);
     $("#correo").val(data.email);
     $("#telefono").val(data.phone);
     $("#rol").val(data.rolId);
@@ -151,8 +151,8 @@ function renderUsers(result) {
         html += "<td>" + user.bornDate + "</td>"
         html += "<td>" + 0 + "</td>"
         html += "<td>"
-        html += "<div class='userColor' style='background-color:" + user.color + "'></div>"
-        html += "<label class='detail-color'>" + user.color + "</label>"
+        // html += "<div class='userColor' style='background-color:" + user.color + "'></div>"
+        // html += "<label class='detail-color'>" + user.color + "</label>"
         html += "</td>"
         html += "<td>" + user.email + "</td>"
         html += "<td>" + user.phone + "</td>"

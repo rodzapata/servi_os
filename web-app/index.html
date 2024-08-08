@@ -44,55 +44,55 @@
             <nav class="sidebar">
                 <ul>
                     <li>
-                        <a href="#" onclick="loadContent('dashboard.html')" class="active">
+                        <a href="#" onclick="loadMenu('dashboard.html')" class="active">
                             <span class="material-symbols-outlined">grid_view</span>
                             <h3>Dasboard</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('user.html')">
+                        <a href="#" onclick="loadMenu('user.html')">
                             <span class="material-symbols-outlined">person</span>
                             <h3>Usuarios</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('customer.html')" >
+                        <a href="#" onclick="loadMenu('customer.html')" >
                             <span class="material-symbols-outlined">person</span>
                             <h3>Clientes</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page2.html')">
+                        <a href="#" onclick="loadMenu('page2.html')">
                             <span class="material-symbols-outlined">receipt_long</span>
                             <h3>Orders</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page5.html')">
+                        <a href="#" onclick="loadMenu('page5.html')">
                             <span class="material-symbols-outlined">monitoring</span>
                             <h3>Analitys</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page6.html')">
+                        <a href="#" onclick="loadMenu('page6.html')">
                             <span class="material-symbols-outlined">mail</span>
                             <h3>Messages</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page7.html')">
+                        <a href="#" onclick="loadMenu('page7.html')">
                             <span class="material-symbols-outlined">inventory_2</span>
                             <h3>Products</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page8.html')">
+                        <a href="#" onclick="loadMenu('page8.html')">
                             <span class="material-symbols-outlined">report</span>
                             <h3>report</h3>
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('page9.html')">
+                        <a href="#" onclick="loadMenu('page9.html')">
                             <span class="material-symbols-outlined">settings</span>
                             <h3>settings</h3>
                         </a>
@@ -108,7 +108,75 @@
         </aside>
 
         <main class="main-content" id="main-content">
-
+            <form id="frm1" style="margin: 50px;">
+                <input type="hidden" id="userId" />
+    
+                <h1>Formulario de registro!</h1>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="nombres" class="form-label ">Nombres</label>
+                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres completos">
+                    </div>
+                    <div class="col-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento">
+                    </div>
+                    <div class="col-3">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="color" class="form-control" id="color">
+                    </div>
+                    <div class="col-3">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
+                    </div>
+                    <div class="col-3">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="col-3">
+                        <label for="avatar" class="form-label">Avatar</label>
+                        <input type="file" class="form-control" id="avatar" accept="image/*" onselect="upload()">
+                    </div>
+    
+                    <div class="col-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <div id="contenedor_rol">
+                            <select class="form-control" id="rol">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Fecha nacimiento</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListUsers">
+                    
+                </tbody>
+            </table>
         </main>
         <!-- <div class="main-content" id="main-content">
             <h1>Bienvenido</h1>
@@ -118,7 +186,7 @@
         <!-- <button class="dark-mode-toggle" id="darkModeToggle">Toggle Dark Mode</button> -->
 
     </div>
-    <script src="js/scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="assets/js/core.js"></script>
     <script src="assets/js/index.js"></script>

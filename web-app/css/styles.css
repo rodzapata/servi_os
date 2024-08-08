@@ -603,7 +603,6 @@ input{
 }
 input::placeholder{
     color:white;
-    color:red;
 }
 .label-field{
     color: white;

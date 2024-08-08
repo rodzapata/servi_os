@@ -22,16 +22,35 @@ themetoggler.addEventListener('click',()=>{
 
 })
 
-function loadContent(page) {
+function loadMenu(page) {
     fetch(page)
         .then(response => response.text())
         .then(data => {
             document.getElementById('main-content').innerHTML = data;
+            loadRoles();
+            loadUsuarios();
+            loadFormEvent();
+        
+        })
+        .catch(error => console.error('Error al cargar la página:', error));
+        
+}
+
+
+function loadContent(page,elemenId) {
+    fetch(page)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(elemenId).innerHTML = data;
+            // loadRoles();
+            // loadUsuarios();
+            // loadFormEvent();
+        
         })
         .catch(error => console.error('Error al cargar la página:', error));
 
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    loadContent('user.html');
+    // loadContent('user.html','main-content');
 });
