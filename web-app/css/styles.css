@@ -482,7 +482,12 @@ header .top .profile{
         grid-template-columns: 1fr;
         /* width: 94%; */
     }
-
+    #main-content #main-user #frm1 .row{
+        grid-template-columns: 1fr;
+        background: #677483;
+        /* gap: 5px; */
+    }
+    
     aside{
         position: fixed;
         left:0;
@@ -564,6 +569,24 @@ header .top .profile{
 
 }
 
+/* ========== USER =============== */
+#main-user{
+    margin: 0;
+    padding: 0;
+}
+
+
+#main-content #main-user #frm1{
+    margin: 0;
+    padding: 0;
+}
+
+#main-user #frm1 .row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* background: #41f1b6; */
+}
+
 /* ====== CUSTOMER ========= */
 #main-customer{
     margin-top: 1.4rem;
@@ -575,10 +598,13 @@ header .top .profile{
     width: 100%;
     height: 100vh;
 }
-
+#main-customer .register #frm2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .register{
     background: var(--color-white) ;
-    background: var(--color-light);    
+    /* background: var(--color-light);     */
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
@@ -588,14 +614,18 @@ header .top .profile{
     gap: 1.6rem;
 }
 
+
+
 .input-field{
     background:var(--color-dark-variant);
     margin: 15px 0;
+
 }
 input{
     /* width: 100%; */
+    border: 3px solid #0075FF;
     background: transparent;
-    border: 0;
+    border: 1;
     outline:none;
     padding: 1rem;
     color:white;

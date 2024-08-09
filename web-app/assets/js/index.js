@@ -77,6 +77,67 @@ function loadFormEvent() {
 
     });
 
+    //formulario 2 Customer
+    $("#frm2").on("submit", function (e) {
+        e.preventDefault();
+        alert('boton aceptar en Customer');
+        $(".error-input").removeClass("error-input");
+
+        if ($("#nombres").val() === "") {
+            $("#nombres").addClass("error-input");
+        }
+
+        if ($("#fechaNacimiento").val() === "") {
+            $("#fechaNacimiento").addClass("error-input");
+        }
+
+        // if ($("#color").val() === "") {
+        //     $("#color").addClass("error-input");
+        // }
+
+        if ($("#correo").val() === "") {
+            $("#correo").addClass("error-input");
+        }
+
+        if ($("#telefono").val() === "") {
+            $("#telefono").addClass("error-input");
+        }
+
+        // if ($("#avatar").val() === "") {
+        //     $("#avatar").addClass("error-input");
+        // }
+
+        // if ($("#rol").val() === "") {
+        //     $("#rol").addClass("error-input");
+        // }
+
+        if ($(".error-input").length > 0) {
+            alert("Verifique los datos ingresados");
+            return;
+        }
+
+        var objCustomer = {
+            "fullName": $("#nombres").val(),
+            "bornDate": $("#fechaNacimiento").val(),
+            // "color": $("#color").val(),
+            "email": $("#correo").val(),
+            "phone": $("#telefono").val(),
+            "avatar": "foto.png"
+            // "rolId": $("#rol").val()
+        };
+
+        if ($("#userId").val() === "") {
+            console.log("Creando nuevo cliente " + JSON.stringify(objCustomer));
+            createUsuario(objCustomer);
+        } else {
+            var userId = $("#userId").val();
+            console.log("Editando Cliente " + userId + " :: " + JSON.stringify(objCustomer));
+            editUsuario(userId, objCustomer);
+        }
+
+    });
+
+
 }
 
 function viewUser(id) {
@@ -111,6 +172,38 @@ function createUsuario(data) {
         $("#resetData").click();
         loadUsuarios();
     });
+}
+
+function createCustomer(data) {
+    var url = "http://localhost:8080/customer";
+
+    callApi(url, "POST", data, function () {
+        alert("Registro creado");
+        $("#resetData").click();
+        loadCustomer();
+    });
+}
+
+function loadCustomer() {
+    var url = "http://localhost:8080/customer";
+    callApi(url, "GET", null, renderCustomer);
+}
+
+function renderCustomer(result) {
+    var data = result.data;
+
+    var birthDayUser = new Date(data.bornDate);
+    var day = ("0" + birthDayUser.getDate()).slice(-2);
+    var month = ("0" + (birthDayUser.getMonth() + 1)).slice(-2);
+    var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
+
+    $("#userId").val(data.id);
+    $("#nombres").val(data.fullName);
+    $("#fechaNacimiento").val(today);
+    // $("#color").val(data.color);
+    $("#correo").val(data.email);
+    $("#telefono").val(data.phone);
+    // $("#rol").val(data.rolId);
 }
 
 function loadUsuarios() {

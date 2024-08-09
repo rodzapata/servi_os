@@ -21,7 +21,7 @@ public class CustomerDto {
     @NotNull
     private Date bornDate;
 
-    @NotNull
+   // @NotNull
     private Long state;
 
     @NotBlank
@@ -30,10 +30,10 @@ public class CustomerDto {
     @NotBlank
     private String phone;
 
-    @NotBlank
+    //@NotBlank
     private String address;
 
-    @NotBlank
+    //@NotBlank
     private String city;
 
 }

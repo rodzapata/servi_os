@@ -1,77 +1,77 @@
-        <form id="frm1" style="margin: 50px;">
-            <input type="hidden" id="userId" />
-
-            <h1>Registro de Usuarios!</h1>
-            <br>
-            <div class="row">
-                <div class="col-3">
-                    <label for="nombres" class="form-label ">Nombres</label>
-                    <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres completos">
-                </div>
-                <div class="col-3">
-                    <label for="fechaNacimiento" class="form-label">Fecha nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento">
-                </div>
-                <div class="col-3">
-                    <label for="color" class="form-label">Color</label>
-                    <input type="color" class="form-control" id="color">
-                </div>
-                <div class="col-3">
-                    <label for="correo" class="form-label">Correo</label>
-                    <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
-                </div>
-                <div class="col-3">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="number" class="form-control" id="telefono">
-                </div>
-                <div class="col-3">
-                    <label for="avatar" class="form-label">Avatar</label>
-                    <input type="file" class="form-control" id="avatar" accept="image/*" onselect="upload()">
-                </div>
-
-                <div class="col-3">
-                    <label for="rol" class="form-label">Rol</label>
-                    <div id="contenedor_rol">
-                        <select class="form-control" id="rol">
-                        </select>
+<div class="main-user" id="main-user">
+    <form id="frm1">
+                <input type="hidden" id="userId" />
+    
+                <h1>Registro de Usuarios!</h1>
+                <br>
+                <div class="row register">
+                    <div class="col-3">
+                        <label for="nombres" class="form-label ">Nombres</label>
+                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres">
+                    </div>
+                    <div class="col-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento">
+                    </div>
+                    <div class="col-3">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="color" class="form-control" id="color">
+                    </div>
+                    <div class="col-3">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo">
+                    </div>
+                    <div class="col-3">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <input type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="col-3">
+                        <label for="avatar" class="form-label">Avatar</label>
+                        <input type="file" class="form-control" id="avatar" accept="image/*" onselect="upload()">
+                    </div>
+    
+                    <div class="col-3">
+                        <label for="rol" class="form-label">Rol</label>
+                        <div id="contenedor_rol">
+                            <select class="form-control" id="rol">
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="row hide" id="contenedor_avatar">
-
-                <img id="img_avatar" width="100px" height="100px">
-            </div> -->
-
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-12">
-                    <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
-                    <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
+                <!-- <div class="row hide" id="contenedor_avatar">
+    
+                    <img id="img_avatar" width="100px" height="100px">
+                </div> -->
+    
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetData" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-        <br>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Fecha nacimiento</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-            </thead>
-            <tbody id="bodyListUsers">
-                
-            </tbody>
-        </table>
-
-
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Fecha nacimiento</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListUsers">
+                    
+                </tbody>
+            </table>
+</div>
