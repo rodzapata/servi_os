@@ -1,7 +1,8 @@
 // app.js
-
 import { getItems, createItem, deleteItem } from './apiService.js';
 import { renderItems, getNewItemName, clearInput, handleDelete } from './ui.js';
+
+console.log("cargando ...");
 
 async function loadItems() {
     const items = await getItems();

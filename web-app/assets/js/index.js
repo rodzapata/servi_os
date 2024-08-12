@@ -1,6 +1,4 @@
 $(function () {
-    alert("funcion anonima");
-
     $("#resetData").click(function () {
         $(".error-input").removeClass("error-input");
         $("#userId").val("");
@@ -18,10 +16,6 @@ $(function () {
     loadUsuarios();
     loadCustomer();
     loadFormEvent();
-
-});
-document.addEventListener("onload",function(){
-    alert("onload");
 
 });
 
@@ -143,11 +137,11 @@ function loadFormEvent() {
         };
 
         if ($("#customerId").val() === "") {
-            console.log("Creando nuevo cliente " + JSON.stringify(objCustomer));
+            console.log("Creando nuevo Customer " + JSON.stringify(objCustomer));
             createCustomer(objCustomer);
         } else {
             var customerId = $("#customerId").val();
-            console.log("Editando Cliente " + customerId + " :: " + JSON.stringify(objCustomer));
+            console.log("Editando Customer " + customerId + " :: " + JSON.stringify(objCustomer));
             editCustomer(customerId, objCustomer);
         }
 
@@ -265,7 +259,7 @@ function deleteCustomer(id) {
     var url = "http://localhost:8080/customer/" + id;
     callApi(url, "DELETE", null, function () {
         alert("Registro eliminado con exito!");
-        loadCustomer();
+        loadCustomers();
     })
 }
 
@@ -275,7 +269,7 @@ function editCustomer(id, data) {
     callApi(url, "PUT", data, function () {
         alert("Registro actualizado");
         $("#resetData2").click();
-        loadCustomer();
+        loadCustomers();
     });
 
 }
@@ -286,7 +280,7 @@ function createCustomer(data) {
     callApi(url, "POST", data, function () {
         alert("Registro creado");
         $("#resetData2").click();
-        loadCustomer();
+        loadCustomers();
     });
 }
 
@@ -348,9 +342,9 @@ function renderCustomers(result) {
     });
 }
 
-function loadCustomer() {
+function loadCustomers() {
     var url = "http://localhost:8080/customer";
-    callApi(url, "GET", null, renderCustomer);
+    callApi(url, "GET", null, renderCustomers);
 }
 
 
