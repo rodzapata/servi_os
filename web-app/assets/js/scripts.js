@@ -29,6 +29,7 @@ function loadMenu(page) {
             document.getElementById('main-content').innerHTML = data;
             loadRoles();
             loadUsuarios();
+            loadCustomer();
             loadFormEvent();
         
         })
@@ -54,3 +55,5 @@ function loadContent(page,elemenId) {
 document.addEventListener("DOMContentLoaded", function() {
     // loadContent('user.html','main-content');
 });
+
+
