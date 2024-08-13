@@ -119,9 +119,11 @@ CREATE TABLE [dbo].spare(
 ) ON [PRIMARY]
 GO
 
+drop table equipment
 
 CREATE TABLE [dbo].[equipment](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](80) ,
 	[serial_number] [varchar](80) NOT NULL UNIQUE,
 	[installation_date] [datetime] NOT NULL,
 	[last_maintenance_date] [datetime] NULL,
@@ -149,24 +151,6 @@ CREATE TABLE [dbo].[technician](
 ) ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[servi_order](
-	[id] [bigint] IDENTITY(1,1) NOT NULL,
-    order_date DATE,
-    scheduled_date DATE,
-    completion_date DATE,
-	customer_authorization BIT NOT NULL,
-	operational_authorization BIT NOT NULL,
-	coordinator_authorization BIT NOT NULL,
-	note text,
-	maintenance_type_id [bigint] NULL,
-	customer_id [bigint] NULL,
-	equipment_id [bigint] NULL,
- CONSTRAINT [PK_servi_order] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
 CREATE TABLE [dbo].[assigned_technician](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -182,7 +166,7 @@ GO
 
 CREATE TABLE [dbo].[activity](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
-	activity_name varchar(250) NOT NULL,
+	name varchar(250) NOT NULL,
  CONSTRAINT [PK_activity] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -215,6 +199,83 @@ CREATE TABLE [dbo].[servi_order_spare](
 ) ON [PRIMARY]
 GO
 
+/*========= Facturas ==============*/
+CREATE TABLE [dbo].[Producto](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](80),
+	[precio] float
+ CONSTRAINT [PK_producto] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[detalle_factura](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	producto_id [bigint] NULL,
+	factura_id [bigint] NULL,
+	cantidad bigint,
+	total bigint
+ CONSTRAINT [PK_detalle_factura] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[factura](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+	[cliente] [varchar](80),
+    fecha DATE,
+	cantidad bigint,
+	total bigint
+ CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* ==== FIN DE FACTURES */
+
+/*========= ORDER SERVIC ======*/
+CREATE TABLE [dbo].[service_order](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+    date DATE,
+    order_date DATE,
+    scheduled_date DATE,
+    completion_date DATE,
+	customer_authorization BIT ,
+	operational_authorization BIT ,
+	coordinator_authorization BIT ,
+	note text,
+	maintenance_type_id [bigint] NULL,
+	customer_id [bigint] NULL,
+	equipment_id [bigint] NULL,
+ CONSTRAINT [PK_service_order] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[service_order_detail](
+	[id] [bigint] IDENTITY(1,1) NOT NULL,
+    description varchar(80),
+	service_order_id [bigint],
+	activity_id [bigint],
+	equipment_id [bigint],
+	spare_id [bigint] NULL,
+	quantity_used [numeric](7, 2) NULL,
+ CONSTRAINT [PK_service_order_detail] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+/* ========FIN ORDER SERVIC ====*/
 
 insert into rol(title) values('ADMINISTRADOR')
 insert into rol(title) values('ASISTENTE')
@@ -296,38 +357,41 @@ insert technician(full_name,email,phone,hire_date)
 values('2000/01/01','tecnico1 Juan','3100000000','2000/01/01')
 
 
-insert activity(activity_name) values('Registrar la presión de entrada y salida de agua de agua')
-insert activity(activity_name) values('Ajustar acoples. poleas y bandas.')
-insert activity(activity_name) values('Inspeccionar los relés. fusibles. bobina. presostatos. breaker. switch. resistencia y termostato.')
-insert activity(activity_name) values('Inspeccionar acoples. poleas y correas')
-insert activity(activity_name) values('Inspeccionar el evaporador y motor blower.')
-insert activity(activity_name) values('Inspeccionar. limpiar o cambiar filtros (según requiera).')
-insert activity(activity_name) values('Limpiar el condensador.')
-insert activity(activity_name) values('Limpiar y soplar el drenaje de agua condensada.')
-insert activity(activity_name) values('Sistema de Control Electrico. verifique y ajuste conexiones eléctricas. Limpiar/corregir sulfatación.')
-insert activity(activity_name) values('Verificar el funcionamiento del motor blower.')
-insert activity(activity_name) values('Verificar con el cliente estado de funcionamiento del equipo.')
-insert activity(activity_name) values('Verificar que el compresor quede con las guardas de proteccion.')
-insert activity(activity_name) values('Verificar el filtro secador y acumulador.')
-insert activity(activity_name) values('Verificar estado de anclajes del compresor.')
-insert activity(activity_name) values('Verificar fijación del compresor y base.')
-insert activity(activity_name) values('Verificar fuga de refrigerante.')
-insert activity(activity_name) values('Verificar fugas por sello o empaques.')
-insert activity(activity_name) values('Verificar funcionamiento correcto del sistema.')
-insert activity(activity_name) values('Verificar la carga de refrigerante. si bajo. probar fugas en la unidad.')
-insert activity(activity_name) values('Verificar la operación del equipo con el switch de apagado y encendido del A/C.')
-insert activity(activity_name) values('Verificar las  presiones  del sistema  en alta y baja. Registrar valores.')
-insert activity(activity_name) values('Indicar comentarios del cliente referente al servicio')
-insert activity(activity_name) values('Verificar voltaje de operación sea de 12 ó 24 V.')
+insert activity(name) values('Registrar la presión de entrada y salida de agua de agua')
+insert activity(name) values('Ajustar acoples. poleas y bandas.')
+insert activity(name) values('Inspeccionar los relés. fusibles. bobina. presostatos. breaker. switch. resistencia y termostato.')
+insert activity(name) values('Inspeccionar acoples. poleas y correas')
+insert activity(name) values('Inspeccionar el evaporador y motor blower.')
+insert activity(name) values('Inspeccionar. limpiar o cambiar filtros (según requiera).')
+insert activity(name) values('Limpiar el condensador.')
+insert activity(name) values('Limpiar y soplar el drenaje de agua condensada.')
+insert activity(name) values('Sistema de Control Electrico. verifique y ajuste conexiones eléctricas. Limpiar/corregir sulfatación.')
+insert activity(name) values('Verificar el funcionamiento del motor blower.')
+insert activity(name) values('Verificar con el cliente estado de funcionamiento del equipo.')
+insert activity(name) values('Verificar que el compresor quede con las guardas de proteccion.')
+insert activity(name) values('Verificar el filtro secador y acumulador.')
+insert activity(name) values('Verificar estado de anclajes del compresor.')
+insert activity(name) values('Verificar fijación del compresor y base.')
+insert activity(name) values('Verificar fuga de refrigerante.')
+insert activity(name) values('Verificar fugas por sello o empaques.')
+insert activity(name) values('Verificar funcionamiento correcto del sistema.')
+insert activity(name) values('Verificar la carga de refrigerante. si bajo. probar fugas en la unidad.')
+insert activity(name) values('Verificar la operación del equipo con el switch de apagado y encendido del A/C.')
+insert activity(name) values('Verificar las  presiones  del sistema  en alta y baja. Registrar valores.')
+insert activity(name) values('Indicar comentarios del cliente referente al servicio')
+insert activity(name) values('Verificar voltaje de operación sea de 12 ó 24 V.')
 
-                                                                                                                                                                                     
+---pruebas                                                                                                                                                                                     
                                                                                                                                                                                  
-select * from activity                                                                                                                                                                                                     
-                                                                                                                                                                                                          
+insert equipment(name,serial_number,installation_date,
+	customer_id, equipment_type_id, brand_id, refrigerant_id)
+values('Equipo 1','1005','01/01/2023',3,1,1,1)
 
+insert service_order(date,order_date,customer_id)
+values('01/01/2024','01/01/2024',3)
 
-select * from brand
-
+insert service_order_detail(description,service_order_id,activity_id,equipment_id)
+values('mantenimiento',1,1,2)
 
 
 

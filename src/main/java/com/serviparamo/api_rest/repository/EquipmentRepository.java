@@ -6,10 +6,17 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+public interface EquipmentRepository extends JpaRepository<EquipmentEntity, Long> {
+    EquipmentEntity findBySerialNumber(String serialNumber);
+}
+
+
+/*
+@Repository
 public interface EquipmentRepository extends
         JpaRepository<EquipmentEntity, Long>,
         JpaSpecificationExecutor<EquipmentEntity> {
 
     EquipmentEntity findBySerialNumber(String serialNumber);
 }
-
+*/

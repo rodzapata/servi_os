@@ -2,9 +2,13 @@ package com.serviparamo.api_rest.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @Entity
+
+
 @Table(name = "activity")
 public class ActivityEntity {
     @Id
@@ -12,11 +16,11 @@ public class ActivityEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "activity_name")
+    @Column(name = "name")
     private String activityName;
 /*
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-    private List<PerformedActivityEntity> performedActivitys;
+    @Column(name = "name")
+    private String name;
 */
 
 }
