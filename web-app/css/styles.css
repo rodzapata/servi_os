@@ -609,20 +609,64 @@ header .top .profile{
     border-radius: var(--card-border-radius);
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
-    /* max-width: 450px; */
     display: grid;
-    gap: 1.6rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem ;
+}
+
+input[type="text"], input[type="email"], input[type="date"], textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.linea-detalle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.linea-detalle select, .linea-detalle input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+}
+.linea-detalle button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.linea-detalle button:hover {
+    background-color: #c82333;
+}
+.add-linea {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+}
+.add-linea:hover {
+    background-color: #0069d9;
 }
 
 
 
+/*
 .input-field{
     background:var(--color-dark-variant);
     margin: 15px 0;
 
 }
+
 input{
-    /* width: 100%; */
     border: 3px solid #0075FF;
     background: transparent;
     border: 1;
@@ -631,6 +675,7 @@ input{
     color:white;
     color:red;
 }
+
 input::placeholder{
     color:white;
 }
@@ -644,3 +689,4 @@ input::placeholder{
     height: 1rem;
 }
 
+*/

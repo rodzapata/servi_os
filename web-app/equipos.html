@@ -1,0 +1,76 @@
+<div class="main-equipo" id="main-equipo">
+    <form id="frmEquipo">
+                <input type="hidden" id="equipmentId" />
+    
+                <h1>Registro de Equipos!</h1>
+                <br>
+                <div class="row register">
+                    <div class="col-3">
+                        <label for="serial" class="form-label ">Serial</label>
+                        <input type="text" class="form-control" id="serial" placeholder="Ingrese el serial del Equipo">
+                    </div>
+                    <div class="col-3">
+                        <label for="fechaInstalacion" class="form-label">Fecha de instalacion</label>
+                        <input type="date" class="form-control" id="fechaInstalacion">
+                    </div>
+                    <div class="col-3">
+                        <label for="fechaUltimoMantenimiento" class="form-label">Fecha del ultimo mantenimiento</label>
+                        <input type="date" class="form-control" id="fechaUltimoMantenimiento">
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbcliente" class="form-label">Cliente</label>
+                        <select name="" id="cmbcliente">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbtipoEquipo" class="form-label">Tipo de Equipo</label>
+                        <select name="" id="cmbtipoEquipo">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbMarca" class="form-label">Marca</label>
+                        <select name="" id="cmbMarca">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbRefrigerante" class="form-label">Refrigerante</label>
+                        <select name="" id="cmbRefrigerante">  
+                        </select>
+                    </div>
+
+                </div>
+                <!-- <div class="row hide" id="contenedor_avatar">
+    
+                    <img id="img_avatar" width="100px" height="100px">
+                </div> -->
+    
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetData3" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Serial</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Tipo Equipo</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Refrigerante</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListEquipos">
+                    
+                </tbody>
+            </table>
+</div>

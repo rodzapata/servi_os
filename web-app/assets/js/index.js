@@ -147,6 +147,96 @@ function loadFormEvent() {
 
     });
 
+    //formulario 3 Equipo
+    $("#frmEquipo").on("submit", function (e) {
+        e.preventDefault();
+        alert('boton aceptar en Equipment');
+        $(".error-input").removeClass("error-input");
+
+        if ($("#nombres").val() === "") {
+            $("#nombres").addClass("error-input");
+        }
+
+        if ($("#fechaNacimiento").val() === "") {
+            $("#fechaNacimiento").addClass("error-input");
+        }
+
+        // if ($("#color").val() === "") {
+        //     $("#color").addClass("error-input");
+        // }
+
+        if ($("#correo").val() === "") {
+            $("#correo").addClass("error-input");
+        }
+
+        if ($("#telefono").val() === "") {
+            $("#telefono").addClass("error-input");
+        }
+
+        // if ($("#avatar").val() === "") {
+        //     $("#avatar").addClass("error-input");
+        // }
+
+        // if ($("#rol").val() === "") {
+        //     $("#rol").addClass("error-input");
+        // }
+
+        if ($(".error-input").length > 0) {
+            alert("Verifique los datos ingresados");
+            return;
+        }
+
+
+        var objEquipment = {
+            "serialNumber": $("#serial").val(),
+            "installationDate": $("#fechaInstalacion").val(),
+            "lastMaintenanceDate": $("#fechaUltimoMantenimiento").val(),
+            "customerId": $("#cmbcliente").val(),
+            "equipmentTypeId":$("#cmbtipoEquipo").val(),
+            "brandId": $("#cmbMarca").val(),
+            "refrigerantId": $("#cmbRefrigerante").val()
+        };
+
+        if ($("#equipmentId").val() === "") {
+            console.log("Creando nuevo Equipo " + JSON.stringify(objEquipment));
+            createEquipment(objEquipment);
+        } else {
+            var equipmentId = $("#equipmentId").val();
+            console.log("Editando Equipo " + equipmentId + " :: " + JSON.stringify(objEquipment));
+            editEquipment(equipmentId, objEquipment);
+        }
+
+    });
+    // ==== formulario Ordenes de servicio ===
+    // ===== agregar linea en el formulario de ordenes de servicio ========
+document.querySelector('.add-linea').addEventListener('click', function() {
+    alert("boton adicionar linea ");
+    const detallesContainer = document.getElementById('detalles-container');
+    const nuevaLinea = document.createElement('div');
+    nuevaLinea.className = 'linea-detalle';
+    nuevaLinea.innerHTML = `
+        <select name="actividad[]" required>
+            <option value="reparacion">Reparación</option>
+            <option value="mantenimiento">Mantenimiento</option>
+            <option value="instalacion">Instalación</option>
+            <option value="inspeccion">Inspección</option>
+        </select>
+        <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+        <button type="button" class="remove-linea">Eliminar</button>
+    `;
+    detallesContainer.appendChild(nuevaLinea);
+
+    // Añadir el evento para eliminar la línea
+    nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
+        nuevaLinea.remove();
+    });
+});
+
+// Añadir el evento para eliminar la línea inicial
+document.querySelector('.remove-linea').addEventListener('click', function() {
+    this.parentElement.remove();
+});
+
 
 }
 
@@ -349,7 +439,7 @@ function loadCustomers() {
 
 
 
-// ===== ROLES =======
+// ===== LOAD COMBOS =======
 function loadRoles() {
     var url = "http://localhost:8080/rol";
     callApi(url, "GET", null, renderRoles);
@@ -364,3 +454,158 @@ function renderRoles(result) {
     }
     $("#rol").html(html);
 }
+
+function cmbCustomers() {
+    var url = "http://localhost:8080/customer";
+    callApi(url, "GET", null, litsCustomers);
+}
+function litsCustomers(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.fullName + "</option>";
+    }
+    $("#cmbcliente").html(html);
+}
+
+function cmbTipoEquipo() {
+    var url = "http://localhost:8080/equipment-type";
+    callApi(url, "GET", null, listTipoEquipo);
+}
+function listTipoEquipo(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.equipmentTypeName + "</option>";
+    }
+    $("#cmbtipoEquipo").html(html);
+}
+
+function cmbMarca() {
+    var url = "http://localhost:8080/brand";
+    callApi(url, "GET", null, listMarca);
+}
+function listMarca(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.brandName + "</option>";
+    }
+    $("#cmbMarca").html(html);
+}
+
+function cmbRefrigerante() {
+    var url = "http://localhost:8080/refrigerant";
+    callApi(url, "GET", null, listRefrigerante);
+}
+function listRefrigerante(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.refrigerantName + "</option>";
+    }
+    $("#cmbRefrigerante").html(html);
+}
+
+// ==== EQUIPMENTS (EQUIPOS) ===========
+function viewEquipment(id) {
+    var url = "http://localhost:8080/equipment/" + id;
+    callApi(url, "GET", null, renderEquipment);
+}
+
+function deleteEqluipment(id) {
+    var url = "http://localhost:8080/equipment/" + id;
+    callApi(url, "DELETE", null, function () {
+        alert("Registro eliminado con exito!");
+        loadEquipments();
+    })
+}
+
+function editEquipment(id, data) {
+    var url = "http://localhost:8080/equipment/" + id;
+
+    callApi(url, "PUT", data, function () {
+        alert("Registro actualizado");
+        $("#resetData3").click();
+        loadEquipments();
+    });
+
+}
+
+function createEquipment(data) {
+    var url = "http://localhost:8080/equipment";
+
+    callApi(url, "POST", data, function () {
+        alert("Registro creado");
+        $("#resetData3").click();
+        loadEquipments();
+    });
+}
+
+function renderEquipment(result) {
+    var data = result.data;
+
+    var birthDayUser = new Date(data.installationDate);
+    var day = ("0" + birthDayUser.getDate()).slice(-2);
+    var month = ("0" + (birthDayUser.getMonth() + 1)).slice(-2);
+    var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
+
+    var birthDayUser2 = new Date(data.lastMaintenanceDate);
+    var day2 = ("0" + birthDayUser2.getDate()).slice(-2);
+    var month2 = ("0" + (birthDayUser2.getMonth() + 1)).slice(-2);
+    var today2 = birthDayUser2.getFullYear() + "-" + (month2) + "-" + (day2);
+    alert(today2);
+
+    $("#equipmentId").val(data.id);
+    $("#serial").val(data.serialNumber);
+    $("#fechaInstalacion").val(today);
+    $("#fechaUltimoMantenimiento").val(today2);
+    $("#cmbcliente").val(data.customerId);
+    $("#cmbtipoEquipo").val(data.equipmentTypeId);
+    $("#cmbMarca").val(data.brandId);
+    $("#cmbRefrigerante").val(data.refrigerantId);
+
+}
+
+function renderEquipments(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var equipment = result.data[i];
+        html += "<tr>";
+        html += "<th scope='row'>" + (i + 1) + "</th>"
+        html += "<td>" + equipment.id + "</td>"
+        html += "<td>" + equipment.serialNumber + "</td>"
+        html += "<td>" + equipment.customerFullName + "</td>"
+        html += "<td>" + equipment.customerPhone + "</td>"
+        html += "<td>" + equipment.equipmentTypeName + "</td>"
+        html += "<td>" + equipment.brandName + "</td>"
+        html += "<td>" + equipment.refrigerantName + "</td>"
+
+        html += "<td>"
+        html += "<div data-id='" + equipment.id + "' class='eliminar'>Eliminar</div>"
+        html += "<div data-id='" + equipment.id + "' class='editar'>Editar</div>"
+        html += "</td>"
+        html += "</tr>"
+    }
+    $("#bodyListEquipos").html(html);
+    $(".eliminar").click(function () {
+        if (confirm("Desea eliminar el registro?")) {
+            var id = $(this).data('id');
+            deleteEquipment(id);
+        }
+    });
+    $(".editar").click(function () {
+        if (confirm("Desea editar el Equipo registro?")) {
+            var id = $(this).data('id');
+            viewEquipment(id);
+        }
+    });
+}
+
+function loadEquipments() {
+    var url = "http://localhost:8080/equipment";
+    callApi(url, "GET", null, renderEquipments);
+}
+
+
+

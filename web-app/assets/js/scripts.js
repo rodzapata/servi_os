@@ -31,8 +31,12 @@ function loadMenu(page) {
             loadRoles();
             loadUsuarios();
             loadCustomers();
+            loadEquipments();
             loadFormEvent();
-        
+            cmbCustomers();
+            cmbTipoEquipo();
+            cmbMarca();
+            cmbRefrigerante();
         })
         .catch(error => console.error('Error al cargar la página:', error));
         

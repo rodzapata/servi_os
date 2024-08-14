@@ -1,0 +1,77 @@
+<div class="main-equipo" id="main-equipo">
+    <form id="frmServiceOrder">
+                <input type="hidden" id="equipmentId" />
+    
+                <h1>Creacion de Ordenes de Servicio!</h1>
+                <br>
+                <div class="row register">
+                    <div class="col-3">
+                        <label for="fecha" class="form-label">Fecha de instalacion</label>
+                        <input type="date" class="form-control" id="fecha">
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbcliente" class="form-label">Cliente</label>
+                        <select name="" id="cmbcliente">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbEquipo" class="form-label">Equipo</label>
+                        <select name="" id="cmbEquipo">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbMarca" class="form-label">Marca</label>
+                        <select name="" id="cmbMarca">  
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="cmbRefrigerante" class="form-label">Refrigerante</label>
+                        <select name="" id="cmbRefrigerante">  
+                        </select>
+                    </div>
+                </div>
+                            <!-- Detalles de la Orden -->
+            <h3>Detalles de la Orden</h3>
+            <div id="detalles-container">
+                <div class="linea-detalle">
+                    <select name="actividad[]" required>
+                        <option value="reparacion">Reparación</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="instalacion">Instalación</option>
+                        <option value="inspeccion">Inspección</option>
+                    </select>
+                    <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+                    <button type="button" class="remove-linea">Eliminar</button>
+                </div>
+            </div>
+            <button type="button" class="add-linea">Agregar Línea</button>
+
+    
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetData4" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Serial</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Tipo Equipo</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Refrigerante</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListEquipos">
+                    
+                </tbody>
+            </table>
+</div>
