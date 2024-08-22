@@ -32,11 +32,13 @@ function loadMenu(page) {
             loadUsuarios();
             loadCustomers();
             loadEquipments();
-            loadFormEvent();
             cmbCustomers();
             cmbTipoEquipo();
             cmbMarca();
             cmbRefrigerante();
+            cmbEquipo();
+            loadFormEvent();
+
         })
         .catch(error => console.error('Error al cargar la página:', error));
         

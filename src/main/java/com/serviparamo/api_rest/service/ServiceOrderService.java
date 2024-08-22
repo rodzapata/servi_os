@@ -2,8 +2,12 @@ package com.serviparamo.api_rest.service;
 
 import com.serviparamo.api_rest.dto.ServiceOrderDetailDto;
 import com.serviparamo.api_rest.dto.ServiceOrderDto;
+import com.serviparamo.api_rest.dto.UserDto;
+import com.serviparamo.api_rest.entity.RolEntity;
 import com.serviparamo.api_rest.entity.ServiceOrderDetailEntity;
 import com.serviparamo.api_rest.entity.ServiceOrderEntity;
+import com.serviparamo.api_rest.entity.UserEntity;
+import com.serviparamo.api_rest.exception.EmailNotValidException;
 import com.serviparamo.api_rest.exception.ResourceNotFoundException;
 import com.serviparamo.api_rest.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +55,27 @@ public class ServiceOrderService {
         return convertToDto(serviceOrderRepository.save(serviceOrder));
     }
 
+
+/*    en comentario para analizar el Dto
+public UserDto create(UserDto dto) {
+
+        UserEntity entity = new UserEntity();
+        entity.setFullName(dto.getFullName());
+        entity.setBornDate(dto.getBornDate());
+        entity.setState(dto.getState());
+        entity.setEmail(dto.getEmail());
+        entity.setPhone(dto.getPhone());
+        entity.setAvatar(dto.getAvatar());
+        entity.setPassword(dto.getPassword());
+        RolEntity rol = new RolEntity();
+        rol.setId(dto.getRolId());
+        entity.setRol(rol);
+        entity = repository.save(entity);
+
+        dto.setId(entity.getId());
+        return dto;
+    }
+ */
     @Transactional
     public ServiceOrderDto update(Long id, ServiceOrderDto serviceOrderDto) {
         ServiceOrderEntity serviceOrder = convertToEntity(serviceOrderDto);

@@ -15,6 +15,8 @@ public class ServiceOrderDto {
     private Long id;
     private Long customerId;
     private Date date;
+    private String customerFullName;
+
     private List<ServiceOrderDetailDto> details;
 
     public ServiceOrderDto() {

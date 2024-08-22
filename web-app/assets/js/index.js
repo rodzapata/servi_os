@@ -207,35 +207,98 @@ function loadFormEvent() {
         }
 
     });
+
+// ====== ORDEN DE SERVICIOS ===============
+
+// $("#frmServiceOrder").on("submit", function (e) {
+//     e.preventDefault();
+//     alert('boton aceptar Orden de servicios');
+//     $(".error-input").removeClass("error-input");
+
+//     if ($("#cmbcliente").val() === "") {
+//         $("#cmbcliente").addClass("error-input");
+//     }
+
+//     if ($("#fechaInstalacion").val() === "") {
+//         $("#fechaInstalacion").addClass("error-input");
+//     }
+
+//     if ($("#correo").val() === "") {
+//         $("#correo").addClass("error-input");
+//     }
+
+//     if ($("#telefono").val() === "") {
+//         $("#telefono").addClass("error-input");
+//     }
+
+//     // if ($("#avatar").val() === "") {
+//     //     $("#avatar").addClass("error-input");
+//     // }
+
+//     // if ($("#rol").val() === "") {
+//     //     $("#rol").addClass("error-input");
+//     // }
+
+//     if ($(".error-input").length > 0) {
+//         alert("Verifique los datos ingresados");
+//         return;
+//     }
+
+
+//     var objEquipment = {
+//         "serialNumber": $("#serial").val(),
+//         "installationDate": $("#fechaInstalacion").val(),
+//         "lastMaintenanceDate": $("#fechaUltimoMantenimiento").val(),
+//         "customerId": $("#cmbcliente").val(),
+//         "equipmentTypeId":$("#cmbtipoEquipo").val(),
+//         "brandId": $("#cmbMarca").val(),
+//         "refrigerantId": $("#cmbRefrigerante").val()
+//     };
+
+//     if ($("#equipmentId").val() === "") {
+//         console.log("Creando nuevo Equipo " + JSON.stringify(objEquipment));
+//         createEquipment(objEquipment);
+//     } else {
+//         var equipmentId = $("#equipmentId").val();
+//         console.log("Editando Equipo " + equipmentId + " :: " + JSON.stringify(objEquipment));
+//         editEquipment(equipmentId, objEquipment);
+//     }
+
+// });
+
+
+// ===== FIN ORDEN DE SERVICIO ============
+
     // ==== formulario Ordenes de servicio ===
     // ===== agregar linea en el formulario de ordenes de servicio ========
-document.querySelector('.add-linea').addEventListener('click', function() {
-    alert("boton adicionar linea ");
-    const detallesContainer = document.getElementById('detalles-container');
-    const nuevaLinea = document.createElement('div');
-    nuevaLinea.className = 'linea-detalle';
-    nuevaLinea.innerHTML = `
-        <select name="actividad[]" required>
-            <option value="reparacion">Reparación</option>
-            <option value="mantenimiento">Mantenimiento</option>
-            <option value="instalacion">Instalación</option>
-            <option value="inspeccion">Inspección</option>
-        </select>
-        <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
-        <button type="button" class="remove-linea">Eliminar</button>
-    `;
-    detallesContainer.appendChild(nuevaLinea);
 
-    // Añadir el evento para eliminar la línea
-    nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
-        nuevaLinea.remove();
+    document.querySelector('.add-linea').addEventListener('click', function() {
+        alert("boton adicionar linea ");
+        const detallesContainer = document.getElementById('detalles-container');
+        const nuevaLinea = document.createElement('div');
+        nuevaLinea.className = 'linea-detalle';
+        nuevaLinea.innerHTML = `
+            <select name="actividad[]" required>
+                <option value="reparacion">Reparación</option>
+                <option value="mantenimiento">Mantenimiento</option>
+                <option value="instalacion">Instalación</option>
+                <option value="inspeccion">Inspección</option>
+            </select>
+            <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+            <button type="button" class="remove-linea">Eliminar</button>
+            `;
+        detallesContainer.appendChild(nuevaLinea);
+
+        // Añadir el evento para eliminar la línea
+        nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
+            nuevaLinea.remove();
+        });
     });
-});
 
-// Añadir el evento para eliminar la línea inicial
-document.querySelector('.remove-linea').addEventListener('click', function() {
-    this.parentElement.remove();
-});
+    // Añadir el evento para eliminar la línea inicial
+    document.querySelector('.remove-linea').addEventListener('click', function() {
+        this.parentElement.remove();
+    });
 
 
 }
@@ -492,6 +555,18 @@ function listMarca(result) {
         html += "<option value='" + opcion.id + "'>" + opcion.brandName + "</option>";
     }
     $("#cmbMarca").html(html);
+}
+function cmbEquipo() {
+    var url = "http://localhost:8080/equipment";
+    callApi(url, "GET", null, listEquipo);
+}
+function listEquipo(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.serialNumber+' - '+opcion.equipmentTypeName + "</option>";
+    }
+    $("#cmbEquipo").html(html);
 }
 
 function cmbRefrigerante() {
