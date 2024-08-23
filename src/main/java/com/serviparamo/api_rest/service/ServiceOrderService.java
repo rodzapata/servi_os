@@ -93,6 +93,7 @@ public UserDto create(UserDto dto) {
         dto.setId(serviceOrder.getId());
         dto.setCustomerId(serviceOrder.getCustomer().getId());
         dto.setDate(serviceOrder.getDate());
+        dto.setCustomerFullName(serviceOrder.getCustomer().getFullName());
         dto.setDetails(serviceOrder.getDetails().stream()
                 .map(this::convertDetailToDto)
                 .collect(Collectors.toList()));
@@ -115,6 +116,10 @@ public UserDto create(UserDto dto) {
         dto.setActivityId(detail.getActivity().getId());
         dto.setEquipmentId(detail.getEquipment().getId());
         dto.setDescription(detail.getDescription());
+        dto.setSerialNumber(detail.getEquipment().getSerialNumber());
+        dto.setEquipmentTypeName(detail.getEquipment().getEquipmentType().getEquipmentTypeName());
+        dto.setBrandName(detail.getEquipment().getBrand().getBrandName());
+        dto.setRefrigerantName(detail.getEquipment().getRefrigerant().getRefrigerantName());
         return dto;
     }
 
@@ -124,6 +129,10 @@ public UserDto create(UserDto dto) {
         detail.setActivity(activityRepository.findById(dto.getActivityId()).orElseThrow(() -> new ResourceNotFoundException("Activity not found")));
         detail.setEquipment(equipmentRepository.findById(dto.getEquipmentId()).orElseThrow(() -> new ResourceNotFoundException("Equipment not found")));
         detail.setDescription(dto.getDescription());
+        detail.setSerialNumber(dto.getSerialNumber());
+        detail.setEquipmentTypeName(dto.getEquipmentTypeName());
+        detail.setBrandName(dto.getBrandName());
+        detail.setRefrigerantName(dto.getRefrigerantName());
         return detail;
     }
 }

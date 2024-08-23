@@ -24,7 +24,13 @@ public class ServiceOrderDetailEntity {
     @JoinColumn(name = "equipment_id", nullable = false)
     private EquipmentEntity equipment;
 
+
     private String description;
+
+    private String serialNumber;
+    private String equipmentTypeName;
+    private String brandName;
+    private String refrigerantName;
 
     // Getters y Setters
 }

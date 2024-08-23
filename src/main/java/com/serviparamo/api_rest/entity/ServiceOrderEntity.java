@@ -19,6 +19,11 @@ public class ServiceOrderEntity {
     @JoinColumn(name = "customer_id", nullable = false)
     private CustomerEntity customer;
 
+    //relacion agragada por mi para probar
+    @ManyToOne
+    @JoinColumn(name = "equipment_id", nullable = false)
+    private EquipmentEntity equipment;
+
     @OneToMany(mappedBy = "serviceOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ServiceOrderDetailEntity> details;
 

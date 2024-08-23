@@ -1,5 +1,6 @@
 package com.serviparamo.api_rest.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class ServiceOrderDto {
     private Long customerId;
     private Date date;
     private String customerFullName;
+
 
     private List<ServiceOrderDetailDto> details;
 
