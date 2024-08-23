@@ -15,8 +15,13 @@ public class ServiceOrderDto {
 
     private Long id;
     private Long customerId;
+    private Long equipmentId;
     private Date date;
     private String customerFullName;
+    private String serialNumber;
+    private String equipmentTypeName;
+    private String brandName;
+    private String refrigerantName;
 
 
     private List<ServiceOrderDetailDto> details;

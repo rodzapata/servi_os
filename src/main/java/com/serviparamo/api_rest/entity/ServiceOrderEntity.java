@@ -28,6 +28,11 @@ public class ServiceOrderEntity {
     private List<ServiceOrderDetailEntity> details;
 
     private Date date;
-
+    /*
+    private String serialNumber;
+    private String equipmentTypeName;
+    private String brandName;
+    private String refrigerantName;
+    */
     // Getters y Setters
 }

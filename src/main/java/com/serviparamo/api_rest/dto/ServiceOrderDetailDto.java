@@ -13,11 +13,12 @@ public class ServiceOrderDetailDto {
     private Long activityId;
     private Long equipmentId;
     private String description;
+    /*
     private String serialNumber;
     private String equipmentTypeName;
     private String brandName;
     private String refrigerantName;
-
+*/
     public ServiceOrderDetailDto(){
 
     }
