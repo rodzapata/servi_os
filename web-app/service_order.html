@@ -1,6 +1,6 @@
 <div class="main-orderr" id="main-order">
     <form id="frmServiceOrder">
-                <input type="hidden" id="equipmentId" />
+                <input type="hidden" id="serviceOrderId" />
     
                 <h1>Creacion de Ordenes de Servicio!</h1>
                 <br>
@@ -8,6 +8,10 @@
                     <div class="col-3">
                         <label for="fechaInstalacion" class="form-label">Fecha de instalacion</label>
                         <input type="date" class="form-control" id="fechaInstalacion">
+                    </div>
+                    <div class="col-3">
+                        <label for="serial" class="form-label ">Serial</label>
+                        <input type="text" class="form-control" id="serial" placeholder="Ingrese el serial del Equipo">
                     </div>
                     <div class="col-3">
                         <label for="cmbcliente" class="form-label">Cliente</label>
@@ -70,7 +74,7 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
-                <tbody id="bodyListEquipos">
+                <tbody id="bodyListServiceOrder">
                     
                 </tbody>
             </table>

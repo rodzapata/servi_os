@@ -88,14 +88,8 @@ public class ServiceOrderService {
     private ServiceOrderEntity convertToEntity(ServiceOrderDto dto) {
         ServiceOrderEntity serviceOrder = new ServiceOrderEntity();
         serviceOrder.setCustomer(customerRepository.findById(dto.getCustomerId()).orElseThrow(() -> new ResourceNotFoundException("Customer not found")));
-        serviceOrder.setEquipment(equipmentRepository.findById(dto.getEquipmentId()).orElseThrow(() -> new ResourceNotFoundException("Customer not found")));
+        serviceOrder.setEquipment(equipmentRepository.findById(dto.getEquipmentId()).orElseThrow(() -> new ResourceNotFoundException("Equipment not found")));
         serviceOrder.setDate(dto.getDate());
-        /*
-        serviceOrder.setSerialNumber(dto.getSerialNumber());
-        serviceOrder.setEquipmentTypeName(dto.getEquipmentTypeName());
-        serviceOrder.setBrandName(dto.getBrandName());
-        serviceOrder.setRefrigerantName(dto.getRefrigerantName());
-        */
         serviceOrder.setDetails(dto.getDetails().stream()
                 .map(detailDto -> convertDetailToEntity(detailDto, serviceOrder))
                 .collect(Collectors.toList()));
@@ -107,14 +101,6 @@ public class ServiceOrderService {
         dto.setId(detail.getId());
         dto.setActivityId(detail.getActivity().getId());
         dto.setDescription(detail.getDescription());
-        /*
-        dto.setEquipmentId(detail.getEquipment().getId());
-        dto.setSerialNumber(detail.getEquipment().getSerialNumber());
-        dto.setEquipmentTypeName(detail.getEquipment().getEquipmentType().getEquipmentTypeName());
-        dto.setBrandName(detail.getEquipment().getBrand().getBrandName());
-        dto.setRefrigerantName(detail.getEquipment().getRefrigerant().getRefrigerantName());
-
-         */
         return dto;
     }
 
@@ -124,13 +110,6 @@ public class ServiceOrderService {
         detail.setActivity(activityRepository.findById(dto.getActivityId()).orElseThrow(() -> new ResourceNotFoundException("Activity not found")));
         //detail.setEquipment(equipmentRepository.findById(dto.getEquipmentId()).orElseThrow(() -> new ResourceNotFoundException("Equipment not found")));
         detail.setDescription(dto.getDescription());
-        /*
-        detail.setSerialNumber(dto.getSerialNumber());
-        detail.setEquipmentTypeName(dto.getEquipmentTypeName());
-        detail.setBrandName(dto.getBrandName());
-        detail.setRefrigerantName(dto.getRefrigerantName());
-
-         */
         return detail;
     }
 }

@@ -37,6 +37,7 @@ function loadMenu(page) {
             cmbMarca();
             cmbRefrigerante();
             cmbEquipo();
+            loadServiceOrders();
             loadFormEvent();
 
         })

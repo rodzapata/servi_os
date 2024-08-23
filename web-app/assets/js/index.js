@@ -14,7 +14,7 @@ $(function () {
 
     loadRoles();
     loadUsuarios();
-    loadCustomer();
+    loadCustomers();
     loadFormEvent();
 
 });
@@ -210,61 +210,61 @@ function loadFormEvent() {
 
 // ====== ORDEN DE SERVICIOS ===============
 
-// $("#frmServiceOrder").on("submit", function (e) {
-//     e.preventDefault();
-//     alert('boton aceptar Orden de servicios');
-//     $(".error-input").removeClass("error-input");
+$("#frmServiceOrder").on("submit", function (e) {
+    e.preventDefault();
+    alert('boton aceptar Orden de servicios');
+    $(".error-input").removeClass("error-input");
 
-//     if ($("#cmbcliente").val() === "") {
-//         $("#cmbcliente").addClass("error-input");
-//     }
+    if ($("#cmbcliente").val() === "") {
+        $("#cmbcliente").addClass("error-input");
+    }
 
-//     if ($("#fechaInstalacion").val() === "") {
-//         $("#fechaInstalacion").addClass("error-input");
-//     }
+    if ($("#fechaInstalacion").val() === "") {
+        $("#fechaInstalacion").addClass("error-input");
+    }
 
-//     if ($("#correo").val() === "") {
-//         $("#correo").addClass("error-input");
-//     }
+    if ($("#correo").val() === "") {
+        $("#correo").addClass("error-input");
+    }
 
-//     if ($("#telefono").val() === "") {
-//         $("#telefono").addClass("error-input");
-//     }
+    if ($("#telefono").val() === "") {
+        $("#telefono").addClass("error-input");
+    }
 
-//     // if ($("#avatar").val() === "") {
-//     //     $("#avatar").addClass("error-input");
-//     // }
+    // if ($("#avatar").val() === "") {
+    //     $("#avatar").addClass("error-input");
+    // }
 
-//     // if ($("#rol").val() === "") {
-//     //     $("#rol").addClass("error-input");
-//     // }
+    // if ($("#rol").val() === "") {
+    //     $("#rol").addClass("error-input");
+    // }
 
-//     if ($(".error-input").length > 0) {
-//         alert("Verifique los datos ingresados");
-//         return;
-//     }
+    if ($(".error-input").length > 0) {
+        alert("Verifique los datos ingresados");
+        return;
+    }
 
 
-//     var objEquipment = {
-//         "serialNumber": $("#serial").val(),
-//         "installationDate": $("#fechaInstalacion").val(),
-//         "lastMaintenanceDate": $("#fechaUltimoMantenimiento").val(),
-//         "customerId": $("#cmbcliente").val(),
-//         "equipmentTypeId":$("#cmbtipoEquipo").val(),
-//         "brandId": $("#cmbMarca").val(),
-//         "refrigerantId": $("#cmbRefrigerante").val()
-//     };
+    var objServiceOrder = {
+        "serialNumber": $("#serial").val(),
+        "date": $("#fechaInstalacion").val(),
+        "customerId": $("#cmbcliente").val(),
+        "equipmentId": $("#cmbEquipo").val(),
+        "equipmentTypeId":$("#cmbtipoEquipo").val(),
+        "brandId": $("#cmbMarca").val(),
+        "refrigerantId": $("#cmbRefrigerante").val()
+    };
 
-//     if ($("#equipmentId").val() === "") {
-//         console.log("Creando nuevo Equipo " + JSON.stringify(objEquipment));
-//         createEquipment(objEquipment);
-//     } else {
-//         var equipmentId = $("#equipmentId").val();
-//         console.log("Editando Equipo " + equipmentId + " :: " + JSON.stringify(objEquipment));
-//         editEquipment(equipmentId, objEquipment);
-//     }
+    if ($("#serviceOrderId").val() === "") {
+        console.log("Creando nuevo Orden de servicio " + JSON.stringify(objServiceOrder));
+        createServiceOrder(objServiceOrder);
+    } else {
+        var serviceOrderId = $("#serviceOrderId").val();
+        console.log("Editando Equipo " + serviceOrderId + " :: " + JSON.stringify(objServiceOrder));
+        editServiceOrder(serviceOrderId, objServiceOrder);
+    }
 
-// });
+});
 
 
 // ===== FIN ORDEN DE SERVICIO ============
@@ -682,5 +682,103 @@ function loadEquipments() {
     callApi(url, "GET", null, renderEquipments);
 }
 
+// ===== ORDNES DE SERVICIO ====
 
+function viewServiceOrder(id) {
+    var url = "http://localhost:8080/service-order/" + id;
+    callApi(url, "GET", null, renderServiceOrder);
+}
 
+function deleteServiceOrder(id) {
+    var url = "http://localhost:8080/service-order/" + id;
+    callApi(url, "DELETE", null, function () {
+        alert("Registro eliminado con exito!");
+        loadServiceOrders();
+    })
+}
+
+function editServiceOrder(id, data) {
+    var url = "http://localhost:8080/service-order/" + id;
+
+    callApi(url, "PUT", data, function () {
+        alert("Registro actualizado");
+        $("#resetData4").click();
+        loadServiceOrders();
+    });
+
+}
+
+function createServiceOrder(data) {
+    var url = "http://localhost:8080/service-order";
+
+    callApi(url, "POST", data, function () {
+        alert("Registro creado");
+        $("#resetData4").click();
+        loadServiceOrders();
+    });
+}
+
+function renderServiceOrder(result) {
+    var data = result.data;
+
+    var birthDayUser = new Date(data.date);
+    var day = ("0" + birthDayUser.getDate()).slice(-2);
+    var month = ("0" + (birthDayUser.getMonth() + 1)).slice(-2);
+    var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
+
+    // var birthDayUser2 = new Date(data.lastMaintenanceDate);
+    // var day2 = ("0" + birthDayUser2.getDate()).slice(-2);
+    // var month2 = ("0" + (birthDayUser2.getMonth() + 1)).slice(-2);
+    // var today2 = birthDayUser2.getFullYear() + "-" + (month2) + "-" + (day2);
+    // alert(today2);
+
+    $("#serviceOrderId").val(data.id);
+    $("#serial").val(data.serialNumber);
+    $("#fechaInstalacion").val(today);
+    // $("#fechaUltimoMantenimiento").val(today2);
+    $("#cmbcliente").val(data.customerId);
+    $("#cmbtipoEquipo").val(data.equipmentTypeId);
+    $("#cmbMarca").val(data.brandId);
+    $("#cmbRefrigerante").val(data.refrigerantId);
+
+}
+
+function renderServiceOrders(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var serviceOrder = result.data[i];
+        html += "<tr>";
+        html += "<th scope='row'>" + (i + 1) + "</th>"
+        html += "<td>" + serviceOrder.id + "</td>"
+        html += "<td>" + serviceOrder.serialNumber + "</td>"
+        html += "<td>" + serviceOrder.customerFullName + "</td>"
+        html += "<td>" + serviceOrder.customerPhone + "</td>"
+        html += "<td>" + serviceOrder.equipmentTypeName + "</td>"
+        html += "<td>" + serviceOrder.brandName + "</td>"
+        html += "<td>" + serviceOrder.refrigerantName + "</td>"
+
+        html += "<td>"
+        html += "<div data-id='" + serviceOrder.id + "' class='eliminar'>Eliminar</div>"
+        html += "<div data-id='" + serviceOrder.id + "' class='editar'>Editar</div>"
+        html += "</td>"
+        html += "</tr>"
+    }
+    $("#bodyListServiceOrder").html(html);
+    $(".eliminar").click(function () {
+        if (confirm("Desea eliminar el registro?")) {
+            var id = $(this).data('id');
+            deleteServiceOrder(id);
+        }
+    });
+    $(".editar").click(function () {
+        if (confirm("Desea editar el Equipo registro?")) {
+            var id = $(this).data('id');
+            viewServiceOrder(id);
+        }
+    });
+}
+
+function loadServiceOrders() {
+    var url = "http://localhost:8080/service-order";
+    callApi(url, "GET", null, renderServiceOrders);
+}

@@ -200,7 +200,7 @@ CREATE TABLE [dbo].[servi_order_spare](
 GO
 
 /*========= Facturas ==============*/
-CREATE TABLE [dbo].[Producto](
+CREATE TABLE [dbo].[producto](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	[nombre] [varchar](80),
 	[precio] float
@@ -264,7 +264,6 @@ CREATE TABLE [dbo].[service_order_detail](
     description varchar(80),
 	service_order_id [bigint],
 	activity_id [bigint],
-	equipment_id [bigint],
 	spare_id [bigint] NULL,
 	quantity_used [numeric](7, 2) NULL,
  CONSTRAINT [PK_service_order_detail] PRIMARY KEY CLUSTERED 

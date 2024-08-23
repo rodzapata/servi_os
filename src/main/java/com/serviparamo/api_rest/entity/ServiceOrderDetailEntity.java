@@ -19,18 +19,7 @@ public class ServiceOrderDetailEntity {
     @ManyToOne
     @JoinColumn(name = "activity_id", nullable = false)
     private ActivityEntity activity;
-/*
-    @ManyToOne
-    @JoinColumn(name = "equipment_id", nullable = false)
-    private EquipmentEntity equipment;
-*/
 
     private String description;
-/*
-    private String serialNumber;
-    private String equipmentTypeName;
-    private String brandName;
-    private String refrigerantName;
-*/
     // Getters y Setters
 }
