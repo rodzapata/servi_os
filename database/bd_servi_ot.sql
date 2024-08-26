@@ -384,13 +384,17 @@ insert activity(name) values('Verificar voltaje de operación sea de 12 ó 24 V.')
                                                                                                                                                                                  
 insert equipment(name,serial_number,installation_date,
 	customer_id, equipment_type_id, brand_id, refrigerant_id)
-values('Equipo 1','1005','01/01/2023',3,1,1,1)
+values('Equipo 1','1005','2023-01-01',2,1,1,1)
 
-insert service_order(date,order_date,customer_id)
-values('01/01/2024','01/01/2024',3)
+insert equipment(name,serial_number,installation_date,
+	customer_id, equipment_type_id, brand_id, refrigerant_id)
+values('Equipo 2','1010','2024-01-10',3,2,2,2)
 
-insert service_order_detail(description,service_order_id,activity_id,equipment_id)
-values('mantenimiento',1,1,2)
+insert service_order(date, order_date, customer_id, equipment_id)
+	values('2024-01-01','2024-01-02',2,1)
+
+insert service_order_detail(description, service_order_id, activity_id, spare_id, quantity_used)
+values ('descripcion 1',1,1,1,10)
 
 
 

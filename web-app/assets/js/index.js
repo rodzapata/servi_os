@@ -260,7 +260,7 @@ $("#frmServiceOrder").on("submit", function (e) {
         createServiceOrder(objServiceOrder);
     } else {
         var serviceOrderId = $("#serviceOrderId").val();
-        console.log("Editando Equipo " + serviceOrderId + " :: " + JSON.stringify(objServiceOrder));
+        console.log("Editando Oden de Servicio " + serviceOrderId + " :: " + JSON.stringify(objServiceOrder));
         editServiceOrder(serviceOrderId, objServiceOrder);
     }
 
@@ -726,11 +726,6 @@ function renderServiceOrder(result) {
     var month = ("0" + (birthDayUser.getMonth() + 1)).slice(-2);
     var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
 
-    // var birthDayUser2 = new Date(data.lastMaintenanceDate);
-    // var day2 = ("0" + birthDayUser2.getDate()).slice(-2);
-    // var month2 = ("0" + (birthDayUser2.getMonth() + 1)).slice(-2);
-    // var today2 = birthDayUser2.getFullYear() + "-" + (month2) + "-" + (day2);
-    // alert(today2);
 
     $("#serviceOrderId").val(data.id);
     $("#serial").val(data.serialNumber);
@@ -744,25 +739,65 @@ function renderServiceOrder(result) {
 }
 
 function renderServiceOrders(result) {
+    var order = result.data;
+    console.log(typeof(result));
+
+    //console.log(cadenaJSON);
+
+
+    // var birthDayUser = new Date(order.date);
+    // var day = ("0" + birthDayUser.getDate()).slice(-2);
+    // var month = ("0" + (birthDayUser.getMonth() + 1)).slice(-2);
+    // var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
+
+
+    $("#serviceOrderId").val(order.id);
+    $("#serial").val(order.serialNumber);
+    // $("#fechaInstalacion").val(today);
+    // $("#fechaUltimoMantenimiento").val(today2);
+    $("#cmbcliente").val(order.customerId);
+    $("#cmbtipoEquipo").val(order.equipmentTypeId);
+    $("#cmbMarca").val(order.brandId);
+    $("#cmbRefrigerante").val(order.refrigerantId);
+
+    //ciclo para la lineas de detalle
     let html = "";
-    for (var i = 0; i < result.data.length; i++) {
-        var serviceOrder = result.data[i];
+    let i=0;
+    order.details.forEach(detail => {
         html += "<tr>";
         html += "<th scope='row'>" + (i + 1) + "</th>"
-        html += "<td>" + serviceOrder.id + "</td>"
-        html += "<td>" + serviceOrder.serialNumber + "</td>"
-        html += "<td>" + serviceOrder.customerFullName + "</td>"
-        html += "<td>" + serviceOrder.customerPhone + "</td>"
-        html += "<td>" + serviceOrder.equipmentTypeName + "</td>"
-        html += "<td>" + serviceOrder.brandName + "</td>"
-        html += "<td>" + serviceOrder.refrigerantName + "</td>"
-
+        html += "<td>" + detail.id + "</td>"
+        html += "<td>" + detail.activityId + "</td>"
+        html += "<td>" + detail.description + "</td>"
+    
         html += "<td>"
-        html += "<div data-id='" + serviceOrder.id + "' class='eliminar'>Eliminar</div>"
-        html += "<div data-id='" + serviceOrder.id + "' class='editar'>Editar</div>"
+        html += "<div data-id='" + order.id + "' class='eliminar'>Eliminar</div>"
+        html += "<div data-id='" + order.id + "' class='editar'>Editar</div>"
         html += "</td>"
         html += "</tr>"
-    }
+
+    });
+    alert(html);
+
+    // let html = "";
+    // for (var i = 0; i < result.data.length; i++) {
+    //     var serviceOrder = result.data[i];
+    //     html += "<tr>";
+    //     html += "<th scope='row'>" + (i + 1) + "</th>"
+    //     html += "<td>" + serviceOrder.id + "</td>"
+    //     html += "<td>" + serviceOrder.serialNumber + "</td>"
+    //     html += "<td>" + serviceOrder.customerFullName + "</td>"
+    //     html += "<td>" + serviceOrder.customerPhone + "</td>"
+    //     html += "<td>" + serviceOrder.equipmentTypeName + "</td>"
+    //     html += "<td>" + serviceOrder.brandName + "</td>"
+    //     html += "<td>" + serviceOrder.refrigerantName + "</td>"
+
+    //     html += "<td>"
+    //     html += "<div data-id='" + serviceOrder.id + "' class='eliminar'>Eliminar</div>"
+    //     html += "<div data-id='" + serviceOrder.id + "' class='editar'>Editar</div>"
+    //     html += "</td>"
+    //     html += "</tr>"
+    // }
     $("#bodyListServiceOrder").html(html);
     $(".eliminar").click(function () {
         if (confirm("Desea eliminar el registro?")) {
@@ -780,5 +815,6 @@ function renderServiceOrders(result) {
 
 function loadServiceOrders() {
     var url = "http://localhost:8080/service-order";
-    callApi(url, "GET", null, renderServiceOrders);
+//      var url = "http://localhost:8080/equipment";
+callApi(url, "GET", null, renderServiceOrders);
 }
