@@ -245,24 +245,21 @@ $("#frmServiceOrder").on("submit", function (e) {
     }
 
 
-    var objServiceOrder = {
-        "serialNumber": $("#serial").val(),
-        "date": $("#fechaInstalacion").val(),
-        "customerId": $("#cmbcliente").val(),
-        "equipmentId": $("#cmbEquipo").val(),
-        "equipmentTypeId":$("#cmbtipoEquipo").val(),
-        "brandId": $("#cmbMarca").val(),
-        "refrigerantId": $("#cmbRefrigerante").val()
-    };
+    var objServiceOrder = createObjectOrden();
+    console.log(objServiceOrder);
+    
 
-    if ($("#serviceOrderId").val() === "") {
-        console.log("Creando nuevo Orden de servicio " + JSON.stringify(objServiceOrder));
-        createServiceOrder(objServiceOrder);
-    } else {
-        var serviceOrderId = $("#serviceOrderId").val();
-        console.log("Editando Oden de Servicio " + serviceOrderId + " :: " + JSON.stringify(objServiceOrder));
-        editServiceOrder(serviceOrderId, objServiceOrder);
-    }
+    console.log("Creando nuevo Orden de servicio " + JSON.stringify(objServiceOrder));
+    createServiceOrder(objServiceOrder);
+
+    // if ($("#serviceOrderId").val() === "") {
+    //     console.log("Creando nuevo Orden de servicio " + JSON.stringify(objServiceOrder));
+    //     createServiceOrder(objServiceOrder);
+    // } else {
+    //     var serviceOrderId = $("#serviceOrderId").val();
+    //     console.log("Editando Oden de Servicio " + serviceOrderId + " :: " + JSON.stringify(objServiceOrder));
+    //     editServiceOrder(serviceOrderId, objServiceOrder);
+    // }
 
 });
 
@@ -279,16 +276,17 @@ $("#frmServiceOrder").on("submit", function (e) {
         nuevaLinea.className = 'linea-detalle';
         nuevaLinea.innerHTML = `
             <select name="actividad[]" required>
-                <option value="reparacion">Reparación</option>
-                <option value="mantenimiento">Mantenimiento</option>
-                <option value="instalacion">Instalación</option>
-                <option value="inspeccion">Inspección</option>
+                <option value="1">Reparación</option>
+                <option value="2">Mantenimiento</option>
+                <option value="3">Instalación</option>
+                <option value="4">Inspección</option>
             </select>
             <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
             <button type="button" class="remove-linea">Eliminar</button>
             `;
         detallesContainer.appendChild(nuevaLinea);
 
+    
         // Añadir el evento para eliminar la línea
         nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
             nuevaLinea.remove();
@@ -300,6 +298,52 @@ $("#frmServiceOrder").on("submit", function (e) {
         this.parentElement.remove();
     });
 
+    function createObjectOrden() {
+        // Capturar los valores del formulario
+       // const id = document.getElementById('id').value;
+        const customerId = document.getElementById('cmbcliente').value;
+        const equipmentId = document.getElementById('cmbEquipo').value;
+        const date = new Date(document.getElementById('fechaInstalacion').value).toISOString(); // Formato ISO
+    
+        // Capturar los detalles (aquí se asume que hay al menos un detalle)
+        const detailElements = document.querySelectorAll('#detalles-container .linea-detalle');
+        const details = Array.from(detailElements).map(detail => {
+            return {
+                // const actividadSelect = document.querySelector('select[name="actividad"]');
+                // const valorSeleccionado = actividadSelect.value;
+
+                // id: parseInt(detail.querySelector('input[name="detailId"]').value),
+                // activityId: parseInt(detail.querySelector('select[name="actividad[]"]').value),
+                activityId: parseInt(detail.querySelector('select[name="actividad"]').value),
+                description: detail.querySelector('input[name="descripcionActividad"]').value
+            };
+        });
+    
+        // Capturar los detalles (aquí se asume que hay al menos un detalle)
+        // const detailElements = document.querySelectorAll('#details .detail');
+        // const details = Array.from(detailElements).map(detail => {
+        //     return {
+        //         id: parseInt(detail.querySelector('input[name="detailId"]').value),
+        //         activityId: parseInt(detail.querySelector('input[name="activityId"]').value),
+        //         description: detail.querySelector('input[name="description"]').value
+        //     };
+        // });
+
+
+        // Crear el objeto con los valores capturados
+        const ordenDeServicio = {
+            // id: parseInt(id),
+            customerId: parseInt(customerId),
+            equipmentId: parseInt(equipmentId),
+            date: date,
+            details: details
+        };
+    
+        // Mostrar el objeto en la consola (o hacer cualquier otra acción necesaria)
+        console.log(ordenDeServicio);
+        return ordenDeServicio;
+    }
+    
 
 }
 
@@ -739,8 +783,41 @@ function renderServiceOrder(result) {
 }
 
 function renderServiceOrders(result) {
-    var order = result.data;
+    //var data = result.data;
     console.log(typeof(result));
+    let html = "";
+    let i=0;
+    result.forEach(item => {
+        console.log("ID:", item.id);
+        console.log("Customer ID:", item.customerId);
+        console.log("Equipment ID:", item.equipmentId);
+        console.log("Date:", item.date);
+        console.log("Customer Full Name:", item.customerFullName);
+        console.log("Serial Number:", item.serialNumber);
+        console.log("Equipment Type Name:", item.equipmentTypeName);
+        console.log("Brand Name:", item.brandName);
+        console.log("Refrigerant Name:", item.refrigerantName);
+    
+        // Recorrer el array 'details' dentro de cada objeto
+    
+        item.details.forEach(detail => {
+            console.log(detail.description)
+            html += "<tr>";
+            html += "<th scope='row'>" + (i+1) + "</th>"
+            html += "<td>" + detail.id + "</td>"
+            html += "<td>" + detail.activityId + "</td>"
+            html += "<td>" + detail.description + "</td>"
+        
+            html += "<td>"
+            html += "<div data-id='" + detail.id + "' class='eliminar'>Eliminar</div>"
+            html += "<div data-id='" + detail.id + "' class='editar'>Editar</div>"
+            html += "</td>"
+            html += "</tr>"
+            i=i+1;
+        });
+   
+    });
+    console.log(html);
 
     //console.log(cadenaJSON);
 
@@ -751,33 +828,48 @@ function renderServiceOrders(result) {
     // var today = birthDayUser.getFullYear() + "-" + (month) + "-" + (day);
 
 
-    $("#serviceOrderId").val(order.id);
-    $("#serial").val(order.serialNumber);
-    // $("#fechaInstalacion").val(today);
-    // $("#fechaUltimoMantenimiento").val(today2);
-    $("#cmbcliente").val(order.customerId);
-    $("#cmbtipoEquipo").val(order.equipmentTypeId);
-    $("#cmbMarca").val(order.brandId);
-    $("#cmbRefrigerante").val(order.refrigerantId);
+    // $("#serviceOrderId").val(order.id);
+    // $("#serial").val(order.serialNumber);
+    // // $("#fechaInstalacion").val(today);
+    // // $("#fechaUltimoMantenimiento").val(today2);
+    // $("#cmbcliente").val(order.customerId);
+    // $("#cmbtipoEquipo").val(order.equipmentTypeId);
+    // $("#cmbMarca").val(order.brandId);
+    // $("#cmbRefrigerante").val(order.refrigerantId);
 
     //ciclo para la lineas de detalle
-    let html = "";
-    let i=0;
-    order.details.forEach(detail => {
-        html += "<tr>";
-        html += "<th scope='row'>" + (i + 1) + "</th>"
-        html += "<td>" + detail.id + "</td>"
-        html += "<td>" + detail.activityId + "</td>"
-        html += "<td>" + detail.description + "</td>"
+    // let html = "";
+    // let i=0;
+    // order.details.forEach(detail => {
+    //     html += "<tr>";
+    //     html += "<th scope='row'>" + (i + 1) + "</th>"
+    //     html += "<td>" + detail.id + "</td>"
+    //     html += "<td>" + detail.activityId + "</td>"
+    //     html += "<td>" + detail.description + "</td>"
     
-        html += "<td>"
-        html += "<div data-id='" + order.id + "' class='eliminar'>Eliminar</div>"
-        html += "<div data-id='" + order.id + "' class='editar'>Editar</div>"
-        html += "</td>"
-        html += "</tr>"
+    //     html += "<td>"
+    //     html += "<div data-id='" + order.id + "' class='eliminar'>Eliminar</div>"
+    //     html += "<div data-id='" + order.id + "' class='editar'>Editar</div>"
+    //     html += "</td>"
+    //     html += "</tr>"
 
+    // });
+    console.log(html);
+
+    $("#bodyListServiceOrder").html(html);
+    $(".eliminar").click(function () {
+        if (confirm("Desea eliminar el registro?")) {
+            var id = $(this).data('id');
+            deleteServiceOrder(id);
+        }
     });
-    alert(html);
+    $(".editar").click(function () {
+        if (confirm("Desea editar el Equipo registro?")) {
+            var id = $(this).data('id');
+            viewServiceOrder(id);
+        }
+    });
+
 
     // let html = "";
     // for (var i = 0; i < result.data.length; i++) {
@@ -798,19 +890,19 @@ function renderServiceOrders(result) {
     //     html += "</td>"
     //     html += "</tr>"
     // }
-    $("#bodyListServiceOrder").html(html);
-    $(".eliminar").click(function () {
-        if (confirm("Desea eliminar el registro?")) {
-            var id = $(this).data('id');
-            deleteServiceOrder(id);
-        }
-    });
-    $(".editar").click(function () {
-        if (confirm("Desea editar el Equipo registro?")) {
-            var id = $(this).data('id');
-            viewServiceOrder(id);
-        }
-    });
+    // $("#bodyListServiceOrder").html(html);
+    // $(".eliminar").click(function () {
+    //     if (confirm("Desea eliminar el registro?")) {
+    //         var id = $(this).data('id');
+    //         deleteServiceOrder(id);
+    //     }
+    // });
+    // $(".editar").click(function () {
+    //     if (confirm("Desea editar el Equipo registro?")) {
+    //         var id = $(this).data('id');
+    //         viewServiceOrder(id);
+    //     }
+    // });
 }
 
 function loadServiceOrders() {

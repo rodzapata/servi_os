@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario para crear objeto</title>
+</head>
+<body>
+    <h1>Formulario para crear objeto</h1>
+    <form id="orderForm">
+        <label for="id">ID:</label>
+        <input type="number" id="id" name="id"><br><br>
+
+        <label for="customerId">Customer ID:</label>
+        <input type="number" id="customerId" name="customerId"><br><br>
+
+        <label for="equipmentId">Equipment ID:</label>
+        <input type="number" id="equipmentId" name="equipmentId"><br><br>
+
+        <label for="date">Date:</label>
+        <input type="datetime-local" id="date" name="date"><br><br>
+
+        <label for="customerFullName">Customer Full Name:</label>
+        <input type="text" id="customerFullName" name="customerFullName"><br><br>
+
+        <label for="serialNumber">Serial Number:</label>
+        <input type="text" id="serialNumber" name="serialNumber"><br><br>
+
+        <label for="equipmentTypeName">Equipment Type Name:</label>
+        <input type="text" id="equipmentTypeName" name="equipmentTypeName"><br><br>
+
+        <label for="brandName">Brand Name:</label>
+        <input type="text" id="brandName" name="brandName"><br><br>
+
+        <label for="refrigerantName">Refrigerant Name:</label>
+        <input type="text" id="refrigerantName" name="refrigerantName"><br><br>
+
+        <!-- Detalles del servicio -->
+        <h3>Detalles</h3>
+        <div id="details">
+            <div class="detail">
+                <label for="detailId1">Detail ID:</label>
+                <input type="number" id="detailId1" name="detailId"><br>
+
+                <label for="activityId1">Activity ID:</label>
+                <input type="number" id="activityId1" name="activityId"><br>
+
+                <label for="description1">Description:</label>
+                <input type="text" id="description1" name="description"><br><br>
+            </div>
+            <!-- Añadir más detalles según sea necesario -->
+            <div class="detail">
+                <label for="detailId1">Detail ID:</label>
+                <input type="number" id="detailId1" name="detailId"><br>
+
+                <label for="activityId1">Activity ID:</label>
+                <input type="number" id="activityId1" name="activityId"><br>
+
+                <label for="description1">Description:</label>
+                <input type="text" id="description1" name="description"><br><br>
+            </div>
+        </div>
+
+        <button type="button" onclick="createObject()">Crear Objeto</button>
+    </form>
+
+    <script src="/assets/js/eje_order.js"></script>
+</body>
+</html>

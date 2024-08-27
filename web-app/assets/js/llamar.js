@@ -16,15 +16,27 @@ async function fetchServiceOrder() {
     const data = await response.json();
 
     const jsonArray = JSON.stringify(data);
-    console.log(jsonArray);
-    console.log("Nombre Completo del Cliente:", data[0].customerFullName);
-    console.log("Nombre Completo del Cliente:", data[0].details[0].description);
+    // console.log(jsonArray);
+    // console.log("Nombre Completo del Cliente: ", data[0].customerFullName);
+    // console.log("Descripcion: ", data[0].details[0].description);
 
     // Imprime el objeto recibido en la consola
     console.log(data);
-    console.log(data[0].brandName);
+    data.forEach(element => {
+      console.log(element.brandName)
+    });
 
-
+    data.forEach((details, indiceSubArray) => {
+      details.forEach((elemento, indiceElemento) => {
+        console.log(`Elemento en matriz[${indiceSubArray}][${indiceElemento}]: ${elemento}`);
+      });
+    });
+    
+    // data.forEach(details => {
+    //   details.forEach(objeto => {
+    //     console.log(objeto.description);
+    //   });
+    // });
 
     // Ejemplo de acceso a los datos del objeto JSON
     console.log("ID del Servicio:", data.id);
@@ -34,11 +46,11 @@ async function fetchServiceOrder() {
     console.log("Detalles:");
 
     // Iterar sobre los detalles y mostrar la información
-    data.details.forEach((detail) => {
-      console.log(`  ID del Detalle: ${detail.id}`);
-      console.log(`  ID de la Actividad: ${detail.activityId}`);
-      console.log(`  Descripción: ${detail.description}`);
-    });
+    // data.details.forEach((detail) => {
+    //   console.log(`  ID del Detalle: ${detail.id}`);
+    //   console.log(`  ID de la Actividad: ${detail.activityId}`);
+    //   console.log(`  Descripción: ${detail.description}`);
+    // });
 
   } catch (error) {
     // Manejo de errores
