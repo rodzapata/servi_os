@@ -38,6 +38,7 @@ function loadMenu(page) {
             cmbRefrigerante();
             cmbEquipo();
             cmbTipoMantenimiento();
+            cmbTecnico();
             loadServiceOrders();
             loadFormEvent();
 

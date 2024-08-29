@@ -584,6 +584,20 @@ function listTipoMantenimiento(result) {
     $("#cmbTipoMantenimiento").html(html);
 }
 
+function cmbTecnico() {
+    var url = "http://localhost:8080/technician";
+    callApi(url, "GET", null, listTecnico);
+}
+function listTecnico(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.fullName + "</option>";
+    }
+    $("#cmbTecnico").html(html);
+}
+
+
 function loadRoles() {
     var url = "http://localhost:8080/rol";
     callApi(url, "GET", null, renderRoles);

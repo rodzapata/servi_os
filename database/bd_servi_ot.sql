@@ -353,7 +353,7 @@ values('Tecnoglas','1950/02/01', 1, 'tecnoglas@gmail.com','3104001122','via 40',
 
 select * from technician
 insert technician(full_name,email,phone,hire_date)
-values('2000/01/01','tecnico1 Juan','3100000000','2000/01/01')
+values('tecnico1 Juan','juan@gamil.com','3100000000','2000/01/01')
 
 
 insert activity(name) values('Registrar la presión de entrada y salida de agua de agua')
