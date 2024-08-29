@@ -275,13 +275,13 @@ $("#frmServiceOrder").on("submit", function (e) {
         const nuevaLinea = document.createElement('div');
         nuevaLinea.className = 'linea-detalle';
         nuevaLinea.innerHTML = `
-            <select name="actividad[]" required>
+            <select name="actividad" required>
                 <option value="1">Reparación</option>
                 <option value="2">Mantenimiento</option>
                 <option value="3">Instalación</option>
                 <option value="4">Inspección</option>
             </select>
-            <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+            <input type="text" name="descripcionActividad" placeholder="Descripción de la actividad" required>
             <button type="button" class="remove-linea">Eliminar</button>
             `;
         detallesContainer.appendChild(nuevaLinea);
@@ -319,17 +319,7 @@ $("#frmServiceOrder").on("submit", function (e) {
             };
         });
     
-        // Capturar los detalles (aquí se asume que hay al menos un detalle)
-        // const detailElements = document.querySelectorAll('#details .detail');
-        // const details = Array.from(detailElements).map(detail => {
-        //     return {
-        //         id: parseInt(detail.querySelector('input[name="detailId"]').value),
-        //         activityId: parseInt(detail.querySelector('input[name="activityId"]').value),
-        //         description: detail.querySelector('input[name="description"]').value
-        //     };
-        // });
-
-
+    
         // Crear el objeto con los valores capturados
         const ordenDeServicio = {
             // id: parseInt(id),
@@ -343,9 +333,43 @@ $("#frmServiceOrder").on("submit", function (e) {
         console.log(ordenDeServicio);
         return ordenDeServicio;
     }
-    
+
+   
 
 }
+
+// Función para actualizar los Equpos según el cliente seleccionado seleccionado
+function actualizarEquipos() {
+    //alert("update equipo");
+    var id=$("#cmbcliente").val();
+    var url = "http://localhost:8080/equipment/findByCustomerId/"+id;
+    //callApi(url, "GET", null, listEquipoCliente);
+
+    const clienteSeleccionado = document.getElementById('cmbcliente').value;
+
+    if (clienteSeleccionado) {
+        // Realizar la solicitud AJAX para obtener los equipos del cliente seleccionado
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const equipos = JSON.parse(xhr.responseText);
+                let html = "";
+                equipos.forEach(equipo => {
+                    html += "<option value='" + equipo.id + "'>" + equipo.serialNumber+' - '+equipo.equipmentTypeName + "</option>";
+                });
+                $("#cmbEquipoCliente").html(html);
+
+            } else {
+                console.error('Error al cargar los países');
+            }
+        };
+        xhr.send();
+    }
+
+            
+}
+
 
 // ==== USER =========
 function viewUser(id) {
@@ -547,6 +571,19 @@ function loadCustomers() {
 
 
 // ===== LOAD COMBOS =======
+function cmbTipoMantenimiento() {
+    var url = "http://localhost:8080/maintenance-type";
+    callApi(url, "GET", null, listTipoMantenimiento);
+}
+function listTipoMantenimiento(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.maintenanceTypeName + "</option>";
+    }
+    $("#cmbTipoMantenimiento").html(html);
+}
+
 function loadRoles() {
     var url = "http://localhost:8080/rol";
     callApi(url, "GET", null, renderRoles);
@@ -612,7 +649,14 @@ function listEquipo(result) {
     }
     $("#cmbEquipo").html(html);
 }
-
+function listEquipoCliente(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var opcion = result.data[i];
+        html += "<option value='" + opcion.id + "'>" + opcion.serialNumber+' - '+opcion.equipmentTypeName + "</option>";
+    }
+    $("#cmbEquipoCliente").html(html);
+}
 function cmbRefrigerante() {
     var url = "http://localhost:8080/refrigerant";
     callApi(url, "GET", null, listRefrigerante);

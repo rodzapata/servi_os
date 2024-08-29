@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Selects Relacionados con AJAX</title>
+</head>
+<body>
+    <h2>Seleccione su ubicación</h2>
+
+    <!-- Selección de Continente -->
+    <label for="continente">Continente:</label>
+    <select id="continente" onchange="actualizarPaises()">
+        <option value="">Seleccione un continente</option>
+        <option value="america">América</option>
+        <option value="europa">Europa</option>
+    </select>
+
+    <!-- Selección de País -->
+    <label for="pais">País:</label>
+    <select id="pais" onchange="actualizarCiudades()">
+        <option value="">Seleccione un país</option>
+    </select>
+
+    <!-- Selección de Ciudad -->
+    <label for="ciudad">Ciudad:</label>
+    <select id="ciudad">
+        <option value="">Seleccione una ciudad</option>
+    </select>
+
+    <script>
+        // Función para actualizar los países según el continente seleccionado
+        function actualizarPaises() {
+            const continenteSeleccionado = document.getElementById('continente').value;
+            const paisSelect = document.getElementById('pais');
+            const ciudadSelect = document.getElementById('ciudad');
+
+            // Limpiar select de países y ciudades
+            paisSelect.innerHTML = '<option value="">Seleccione un país</option>';
+            ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+
+            if (continenteSeleccionado) {
+                // Realizar la solicitud AJAX para obtener los países del continente seleccionado
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `getPaises.php?continente=${continenteSeleccionado}`, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const paises = JSON.parse(xhr.responseText);
+                        paises.forEach(pais => {
+                            const option = document.createElement('option');
+                            option.value = pais.codigo;
+                            option.textContent = pais.nombre;
+                            paisSelect.appendChild(option);
+                        });
+                    } else {
+                        console.error('Error al cargar los países');
+                    }
+                };
+                xhr.send();
+            }
+        }
+
+        // Función para actualizar las ciudades según el país seleccionado
+        function actualizarCiudades() {
+            const paisSeleccionado = document.getElementById('pais').value;
+            const ciudadSelect = document.getElementById('ciudad');
+
+            // Limpiar select de ciudades
+            ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+
+            if (paisSeleccionado) {
+                // Realizar la solicitud AJAX para obtener las ciudades del país seleccionado
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `getCiudades.php?pais=${paisSeleccionado}`, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const ciudades = JSON.parse(xhr.responseText);
+                        ciudades.forEach(ciudad => {
+                            const option = document.createElement('option');
+                            option.value = ciudad.codigo;
+                            option.textContent = ciudad.nombre;
+                            ciudadSelect.appendChild(option);
+                        });
+                    } else {
+                        console.error('Error al cargar las ciudades');
+                    }
+                };
+                xhr.send();
+            }
+        }
+    </script>
+</body>
+</html>

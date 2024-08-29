@@ -46,4 +46,7 @@ public class EquipmentDto {
 
     private String refrigerantName;
 
+    public EquipmentDto(){
+
+    }
 }

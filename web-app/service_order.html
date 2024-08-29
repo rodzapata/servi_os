@@ -10,17 +10,24 @@
                         <input type="date" class="form-control" id="fechaInstalacion">
                     </div>
                     <div class="col-3">
-                        <label for="serial" class="form-label ">Serial</label>
-                        <input type="text" class="form-control" id="serial" placeholder="Ingrese el serial del Equipo">
-                    </div>
-                    <div class="col-3">
-                        <label for="cmbcliente" class="form-label">Cliente</label>
-                        <select name="" id="cmbcliente">  
+                        <label for="cmbEquipo" class="form-label">Tipo de Mantenimiento</label>
+                        <select name="" id="cmbTipoMantenimiento">  
                         </select>
                     </div>
+
+                    <!-- <div class="col-3">
+                        <label for="serial" class="form-label ">Serial</label>
+                        <input type="text" class="form-control" id="serial" placeholder="Ingrese el serial del Equipo">
+                    </div> -->
+                    <div class="col-3">
+                        <label for="cmbcliente" class="form-label">Cliente</label>
+                        <select name="" id="cmbcliente" onchange="actualizarEquipos()">  
+                        </select>
+                    </div>
+                
                     <div class="col-3">
                         <label for="cmbEquipo" class="form-label">Equipo</label>
-                        <select name="" id="cmbEquipo">  
+                        <select name="" id="cmbEquipoCliente">  
                         </select>
                     </div>
                     <div class="col-3">

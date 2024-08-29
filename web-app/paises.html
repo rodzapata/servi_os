@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de Selects Relacionados</title>
+</head>
+<body>
+    <h2>Seleccione su ubicación</h2>
+    <!-- Selección de Continente -->
+    <label for="continente">Continente:</label>
+    <select id="continente" onchange="actualizarPaises()">
+        <option value="">Seleccione un continente</option>
+        <option value="america">América</option>
+        <option value="europa">Europa</option>
+    </select>
+
+    <!-- Selección de País -->
+    <label for="pais">País:</label>
+    <select id="pais" onchange="actualizarCiudades()">
+        <option value="">Seleccione un país</option>
+    </select>
+
+    <!-- Selección de Ciudad -->
+    <label for="ciudad">Ciudad:</label>
+    <select id="ciudad">
+        <option value="">Seleccione una ciudad</option>
+    </select>
+
+    <script>
+        // Datos de ejemplo para los selects
+        const datos = {
+            america: {
+                mexico: ['Ciudad de México', 'Guadalajara', 'Monterrey'],
+                estados_unidos: ['Nueva York', 'Los Ángeles', 'Chicago']
+            },
+            europa: {
+                españa: ['Madrid', 'Barcelona', 'Valencia'],
+                francia: ['París', 'Lyon', 'Marsella']
+            }
+        };
+
+        // Función para actualizar los países según el continente seleccionado
+        function actualizarPaises() {
+            const continenteSelect = document.getElementById('continente');
+            const paisSelect = document.getElementById('pais');
+            const ciudadSelect = document.getElementById('ciudad');
+            const continenteSeleccionado = continenteSelect.value;
+
+            // Limpiar select de países y ciudades
+            paisSelect.innerHTML = '<option value="">Seleccione un país</option>';
+            ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+
+            if (continenteSeleccionado) {
+                // Añadir opciones de país según el continente seleccionado
+                const paises = Object.keys(datos[continenteSeleccionado]);
+                paises.forEach(pais => {
+                    const option = document.createElement('option');
+                    option.value = pais;
+                    option.textContent = pais.charAt(0).toUpperCase() + pais.slice(1).replace('_', ' ');
+                    paisSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Función para actualizar las ciudades según el país seleccionado
+        function actualizarCiudades() {
+            const continenteSelect = document.getElementById('continente');
+            const paisSelect = document.getElementById('pais');
+            const ciudadSelect = document.getElementById('ciudad');
+            const continenteSeleccionado = continenteSelect.value;
+            const paisSeleccionado = paisSelect.value;
+
+            // Limpiar select de ciudades
+            ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>';
+
+            if (continenteSeleccionado && paisSeleccionado) {
+                // Añadir opciones de ciudad según el país seleccionado
+                const ciudades = datos[continenteSeleccionado][paisSeleccionado];
+                ciudades.forEach(ciudad => {
+                    const option = document.createElement('option');
+                    option.value = ciudad;
+                    option.textContent = ciudad;
+                    ciudadSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

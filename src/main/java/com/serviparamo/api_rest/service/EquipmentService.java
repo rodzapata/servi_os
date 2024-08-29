@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EquipmentService {
@@ -33,6 +34,52 @@ public class EquipmentService {
             return false;
         }
         return true;
+    }
+
+    /*
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+*/
+
+    //prueba
+    // Obtener equipos por ID de cliente
+
+    public List<EquipmentDto> getEquipmentsByCustomerId(Long customerId) {
+        // Llama al método del repositorio
+        List<EquipmentEntity> equipments = repository.findByCustomerId(customerId);
+//        List<EquipmentEntity> equipments = equipmentRepository.findByCustomerId(customerId);
+
+        // Convierte las entidades a DTOs, si es necesario
+        return equipments.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    // Método para convertir entidad a DTO
+    private EquipmentDto convertToDto(EquipmentEntity equipmentEntity) {
+        EquipmentDto equipmentDto = new EquipmentDto();
+        equipmentDto.setId(equipmentEntity.getId());
+        equipmentDto.setSerialNumber(equipmentEntity.getSerialNumber());
+        equipmentDto.setCustomerId(equipmentEntity.getCustomer().getId());
+        equipmentDto.setInstallationDate(equipmentEntity.getInstallationDate());
+        equipmentDto.setLastMaintenanceDate(equipmentEntity.getLastMaintenanceDate());
+
+        //clientes
+        equipmentDto.setCustomerFullName(equipmentEntity.getCustomer().getFullName());
+        equipmentDto.setCustomerPhone(equipmentEntity.getCustomer().getPhone());
+
+        //tipo de equipos
+        equipmentDto.setEquipmentTypeId(equipmentEntity.getEquipmentType().getId());
+        equipmentDto.setEquipmentTypeName(equipmentEntity.getEquipmentType().getEquipmentTypeName());
+
+        //marcas
+        equipmentDto.setBrandId(equipmentEntity.getBrand().getId());
+        equipmentDto.setBrandName(equipmentEntity.getBrand().getBrandName());
+
+        //refrigerantes
+        equipmentDto.setRefrigerantId(equipmentEntity.getRefrigerant().getId());
+        equipmentDto.setRefrigerantName(equipmentEntity.getRefrigerant().getRefrigerantName());
+        return equipmentDto;
     }
 
     public EquipmentDto create(EquipmentDto dto) {
@@ -106,6 +153,7 @@ public class EquipmentService {
     public EquipmentDto getById(Long id) {
 
         EquipmentEntity entity = this.repository.findById(id).get();
+
         EquipmentDto dto = EquipmentDto.builder()
                 .id(entity.getId())
                 .serialNumber(entity.getSerialNumber())
