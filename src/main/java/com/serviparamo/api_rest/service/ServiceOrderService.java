@@ -71,8 +71,8 @@ public class ServiceOrderService {
     private ServiceOrderDto convertToDto(ServiceOrderEntity serviceOrder) {
         ServiceOrderDto dto = new ServiceOrderDto();
         dto.setId(serviceOrder.getId());
-        dto.setCustomerId(serviceOrder.getCustomer().getId());
         dto.setDate(serviceOrder.getDate());
+        dto.setCustomerId(serviceOrder.getCustomer().getId());
         dto.setCustomerFullName(serviceOrder.getCustomer().getFullName());
         dto.setEquipmentId(serviceOrder.getEquipment().getId());
         dto.setSerialNumber(serviceOrder.getEquipment().getSerialNumber());
@@ -108,7 +108,6 @@ public class ServiceOrderService {
         ServiceOrderDetailEntity detail = new ServiceOrderDetailEntity();
         detail.setServiceOrder(serviceOrder);
         detail.setActivity(activityRepository.findById(dto.getActivityId()).orElseThrow(() -> new ResourceNotFoundException("Activity not found")));
-        //detail.setEquipment(equipmentRepository.findById(dto.getEquipmentId()).orElseThrow(() -> new ResourceNotFoundException("Equipment not found")));
         detail.setDescription(dto.getDescription());
         return detail;
     }
