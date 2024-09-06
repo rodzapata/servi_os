@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página 2</title>
+    <script>
+        window.onload = function() {
+            const nombre = localStorage.getItem('nombre');
+            if (nombre) {
+                document.getElementById('saludo').innerText = `Hola, ${nombre}!`;
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Página 2</h1>
+    <p id="saludo">Hola!</p>
+</body>
+</html>

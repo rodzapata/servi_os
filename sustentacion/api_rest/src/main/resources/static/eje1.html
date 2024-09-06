@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/eje1.css">
+  <title>Responsive Grid Layout</title>
+</head>
+<body>
+  <div class="grid-container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#" onclick="loadPage('home')">Home</a></li>
+          <li><a href="#" onclick="loadPage('about')">About</a></li>
+          <li><a href="#" onclick="loadPage('services')">Services</a></li>
+          <li><a href="#" onclick="loadPage('contact')">Contact</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="content" id="main-content">
+      <!-- Content will be loaded here -->
+    </main>
+  </div>
+
+  <script>
+    function loadPage(page) {
+      // Simple function to simulate page loading
+      const content = {
+        home: '<h1>Home Page</h1><p>Welcome to the home page!</p>',
+        about: '<h1>About Us</h1><p>Learn more about us.</p>',
+        services: '<h1>Our Services</h1><p>These are the services we offer.</p>',
+        contact: '<h1>Contact Us</h1><p>Get in touch with us.</p>'
+      };
+      document.getElementById('main-content').innerHTML = content[page] || '<p>Page not found</p>';
+    //   document.getElementById('main-content').src = page;
+
+    }
+  </script>
+</body>
+</html>

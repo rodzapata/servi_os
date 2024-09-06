@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inicio de Sesión y Registro</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <!-- Contenedor de pestañas -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showForm('login')">Iniciar Sesión</button>
+                <button class="tab-btn" onclick="showForm('register')">Registrar</button>
+            </div>
+
+            <!-- Formulario de Inicio de Sesión -->
+            <form id="loginForm" class="form active">
+                <h2>Iniciar Sesión</h2>
+                <input type="email" id="loginEmail" placeholder="Correo Electrónico" required>
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+                <p id="loginMessage"></p>
+            </form>
+
+            <!-- Formulario de Registro -->
+            <form id="registerForm" class="form">
+                <h2>Registrar</h2>
+                <input type="text" id="registerUsername" placeholder="Nombre de Usuario" required>
+                <input type="email" id="registerEmail" placeholder="Correo Electrónico" required>
+                <input type="password" id="registerPassword" placeholder="Contraseña" required>
+                <button type="submit">Registrar</button>
+                <p id="registerMessage"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

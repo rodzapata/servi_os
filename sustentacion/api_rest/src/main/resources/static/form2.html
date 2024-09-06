@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Orden de Servicio - Empresa de Aire Acondicionado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="email"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .linea-detalle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .linea-detalle select, .linea-detalle input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .linea-detalle button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .linea-detalle button:hover {
+            background-color: #c82333;
+        }
+        .add-linea {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .add-linea:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Crear Orden de Servicio</h2>
+        <form action="/crear-orden" method="POST">
+            <!-- Información del Cliente -->
+            <label for="nombreCliente">Nombre del Cliente</label>
+            <input type="text" id="nombreCliente" name="nombreCliente" required>
+
+            <label for="telefonoCliente">Teléfono</label>
+            <input type="text" id="telefonoCliente" name="telefonoCliente" required>
+
+            <label for="emailCliente">Email</label>
+            <input type="email" id="emailCliente" name="emailCliente" required>
+
+            <!-- Detalles del Equipo -->
+            <label for="tipoEquipo">Tipo de Equipo</label>
+            <select id="tipoEquipo" name="tipoEquipo" required>
+                <option value="split">Split</option>
+                <option value="ventana">Ventana</option>
+                <option value="central">Central</option>
+                <option value="otro">Otro</option>
+            </select>
+
+            <label for="marcaEquipo">Marca del Equipo</label>
+            <input type="text" id="marcaEquipo" name="marcaEquipo" required>
+
+            <label for="modeloEquipo">Modelo del Equipo</label>
+            <input type="text" id="modeloEquipo" name="modeloEquipo" required>
+
+            <!-- Detalles de la Orden -->
+            <h3>Detalles de la Orden</h3>
+            <div id="detalles-container">
+                <div class="linea-detalle">
+                    <select name="actividad[]" required>
+                        <option value="reparacion">Reparación</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="instalacion">Instalación</option>
+                        <option value="inspeccion">Inspección</option>
+                    </select>
+                    <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+                    <button type="button" class="remove-linea">Eliminar</button>
+                </div>
+            </div>
+            <button type="button" class="add-linea">Agregar Línea</button>
+
+            <!-- Fecha Programada -->
+            <label for="fechaServicio">Fecha Programada para el Servicio</label>
+            <input type="date" id="fechaServicio" name="fechaServicio" required>
+
+            <!-- Botón de Envío -->
+            <input type="submit" value="Crear Orden de Servicio">
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('.add-linea').addEventListener('click', function() {
+            const detallesContainer = document.getElementById('detalles-container');
+            const nuevaLinea = document.createElement('div');
+            nuevaLinea.className = 'linea-detalle';
+            nuevaLinea.innerHTML = `
+                <select name="actividad[]" required>
+                    <option value="reparacion">Reparación</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                    <option value="instalacion">Instalación</option>
+                    <option value="inspeccion">Inspección</option>
+                </select>
+                <input type="text" name="descripcionActividad[]" placeholder="Descripción de la actividad" required>
+                <button type="button" class="remove-linea">Eliminar</button>
+            `;
+            detallesContainer.appendChild(nuevaLinea);
+
+            // Añadir el evento para eliminar la línea
+            nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
+                nuevaLinea.remove();
+            });
+        });
+
+        // Añadir el evento para eliminar la línea inicial
+        document.querySelector('.remove-linea').addEventListener('click', function() {
+            this.parentElement.remove();
+        });
+    </script>
+</body>
+</html>

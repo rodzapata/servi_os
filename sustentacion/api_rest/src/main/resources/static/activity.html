@@ -1,0 +1,38 @@
+<div class="main-customer" id="main-customer">
+    <form id="frmActivity">
+                <input type="hidden" id="activityId" />
+    
+                <h1>Registro de Actividades!</h1>
+                <br>
+                <div class="row register">
+                    <div class="col-3">
+                        <label for="nombres" class="form-label ">Nombres</label>
+                        <input type="text" class="form-control" id="nombreActividad" placeholder="Digite Nombre de actividad">
+                    </div>
+                </div>
+    
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg">Enviar</button>
+                        <button type="reset" id="resetActivity" class="btn btn-secondary btn-lg">Limpiar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+    
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyListActivity">
+                    
+                </tbody>
+            </table>
+</div>

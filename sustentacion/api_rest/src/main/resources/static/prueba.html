@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example</title>
+  <style>
+    aside {
+      display: none; /* Asegúrate de que el menú esté oculto por defecto */
+    }
+  </style>
+</head>
+<body>
+  <button id="menu-btn">Open Menu</button>
+  <aside>
+    <button id="close-btn">Close Menu</button>
+    <p>This is the side menu.</p>
+  </aside>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sideMenu = document.querySelector("aside");
+      const menuBtn = document.querySelector("#menu-btn");
+      const closeBtn = document.querySelector("#close-btn");
+
+      console.log(sideMenu); // Debería no ser null
+      console.log(menuBtn);  // Debería no ser null
+      console.log(closeBtn); // Debería no ser null
+
+      menuBtn.addEventListener('click', () => {
+        sideMenu.style.display = 'block';
+      });
+
+      closeBtn.addEventListener('click', () => {
+        sideMenu.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>

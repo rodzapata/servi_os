@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.linea-detalle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.linea-detalle select, .linea-detalle input {
+    margin-right: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #1abc9c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button.remove-linea {
+    background-color: #e74c3c;
+}
+
+button:hover {
+    background-color: #16a085;
+}
+
+button.remove-linea:hover {
+    background-color: #c0392b;
+}

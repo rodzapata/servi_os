@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renderizar JSON</title>
+</head>
+<body>
+    <!-- Div para mostrar el JSON renderizado -->
+    <div id="order-details"></div>
+
+    <script>
+        // JSON de ejemplo
+        const order = {
+            "id": 1,
+            "customerId": 2,
+            "equipmentId": 1,
+            "date": "2024-01-01T05:00:00.000+00:00",
+            "customerFullName": "Maria Teresa",
+            "serialNumber": "1005",
+            "equipmentTypeName": "SPLIT",
+            "brandName": "LG",
+            "refrigerantName": "GAS REFRIGERANTE R-22",
+            "details": [
+                {
+                    "id": 1,
+                    "activityId": 1,
+                    "description": "descripcion 1"
+                },
+                {
+                    "id": 2,
+                    "activityId": 2,
+                    "description": "descripcion 2"
+                }                
+            ]
+        };
+
+        // Función para renderizar los detalles de la orden
+        function renderOrderDetails(order) {
+            console.log(typeof(order))
+            console.log(order);
+            const orderDiv = document.getElementById("order-details");
+            
+            // Crear HTML para los detalles de la orden
+            let html = `
+                <h2>Detalles de la Orden</h2>
+                <p><strong>ID:</strong> ${order.id}</p>
+                <p><strong>Cliente:</strong> ${order.customerFullName} (ID: ${order.customerId})</p>
+                <p><strong>Equipo:</strong> ${order.equipmentTypeName} ${order.brandName} (ID: ${order.equipmentId})</p>
+                <p><strong>Número de Serie:</strong> ${order.serialNumber}</p>
+                <p><strong>Refrigerante:</strong> ${order.refrigerantName}</p>
+                <p><strong>Fecha:</strong> ${new Date(order.date).toLocaleDateString()}</p>
+                <h3>Detalles de Actividades</h3>
+                <ul>
+            `;
+            
+            // Agregar cada detalle al HTML
+            order.details.forEach(detail => {
+                html += `<li>ID de Actividad: ${detail.activityId} - Descripción: ${detail.description}</li>`;
+            });
+            
+            html += '</ul>';
+            
+            // Inyectar el HTML en el div
+            orderDiv.innerHTML = html;
+        }
+
+        // Llamar a la función para renderizar los detalles
+        renderOrderDetails(order);
+    </script>
+</body>
+</html>
